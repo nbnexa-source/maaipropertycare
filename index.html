@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Scene</title>
+    <meta
+      name="description"
+      content="Scroll-driven Three.js camera path with GSAP ScrollTrigger and a reduced-motion fallback."
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- The 3D scene sits behind the text and never scrolls itself. -->
+    <canvas id="scene" aria-hidden="true"></canvas>
+
+    <!-- Each section is a waypoint. The camera moves between them as you scroll. -->
+    <main>
+      <section data-step="0">
+        <h1>Scroll Scene</h1>
+        <p>A camera path wired to the scrollbar. Keep scrolling.</p>
+      </section>
+      <section data-step="1">
+        <h2>Waypoints</h2>
+        <p>Each section is a stop. The camera eases from one to the next.</p>
+      </section>
+      <section data-step="2">
+        <h2>Scrubbed</h2>
+        <p>Motion is tied to scroll position, so it runs forward and backward.</p>
+      </section>
+      <section data-step="3">
+        <h2>Accessible</h2>
+        <p>Turn on "reduce motion" and the camera jumps instead of sweeping.</p>
+      </section>
+      <section data-step="4">
+        <h2>Make it yours</h2>
+        <p>Edit the waypoints array in <code>src/main.ts</code>.</p>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
