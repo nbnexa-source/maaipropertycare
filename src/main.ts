@@ -183,26 +183,6 @@ function initializePremiumMotion() {
 }
 initializePremiumMotion();
 
-function initializeLocationMotion() {
-  const section = document.querySelector<HTMLElement>(".location-section");
-  const camera = document.querySelector<HTMLElement>(".map-camera");
-  const marker = document.querySelector<HTMLElement>(".map-marker");
-  const copy = document.querySelector<HTMLElement>(".location-copy");
-  if (!section || !camera || !marker || !copy) return;
-  if (motionPreference.matches) {
-    section.classList.add("location-visible");
-    return;
-  }
-  const timeline = gsap.timeline({
-    scrollTrigger: { trigger: section, start: "top bottom", end: "bottom bottom", scrub: 0.7 },
-  });
-  timeline
-    .fromTo(camera, { scale: 0.84, yPercent: 5, rotateX: 7 }, { scale: 2.12, yPercent: 0, rotateX: 0, ease: "none" }, 0)
-    .fromTo(marker, { autoAlpha: 0, scale: 0.45, y: 34 }, { autoAlpha: 1, scale: 1, y: 0, ease: "power3.out", duration: 0.26 }, 0.56)
-    .fromTo(copy, { autoAlpha: 0, y: 38 }, { autoAlpha: 1, y: 0, ease: "power3.out", duration: 0.3 }, 0.63);
-}
-initializeLocationMotion();
-
 function initializeLogo() {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth <= 700 ? 1.5 : 1.75));

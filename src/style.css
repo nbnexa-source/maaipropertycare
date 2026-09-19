@@ -147,16 +147,3 @@ footer{z-index:3}
 @keyframes ambient-float-three{0%{transform:translate3d(-2vw,3vh,0) scale(.94);opacity:.18}100%{transform:translate3d(5vw,-7vh,0) scale(1.1);opacity:.45}}
 @media(max-width:700px){.ambient-motion:before{animation-duration:22s}.ambient-orb-one{width:64vw;height:64vw;left:-30vw}.ambient-orb-two{width:76vw;height:76vw;right:-41vw}.ambient-orb-three{display:none}}
 @media(prefers-reduced-motion:reduce){.ambient-motion{display:none}}
-
-/* Office location: the camera pushes through a wide city view to the MAAI pin. */
-.location-section{height:175svh;position:relative;background:#0c211a;color:var(--ivory);overflow:clip;z-index:3}
-.location-sticky{height:100svh;position:sticky;top:0;overflow:hidden;isolation:isolate;perspective:1200px}
-.map-camera{position:absolute;inset:-18%;transform-origin:56% 41%;will-change:transform}
-.office-map{width:100%;height:100%;object-fit:cover;object-position:56% 41%;filter:saturate(.76) contrast(1.08) brightness(.64) hue-rotate(337deg);pointer-events:none}
-.map-veil{position:absolute;inset:0;background:radial-gradient(circle at 50% 52%,transparent 0 8%,#09201825 30%,#092018c9 100%),linear-gradient(90deg,#092018c9 0%,#09201836 54%,#092018ad 100%);pointer-events:none}
-.map-marker{position:absolute;left:58%;top:38%;z-index:2;width:88px;display:grid;justify-items:center;transform:translate(-50%,-100%);filter:drop-shadow(0 18px 16px #0008);will-change:transform,opacity}
-.map-marker img{width:72px;height:72px;object-fit:contain}.map-marker span{display:block;width:12px;height:12px;margin-top:-5px;border-radius:50%;background:#e5c078;border:3px solid #fff7df;box-shadow:0 0 0 9px #e5c07833,0 8px 12px #0008}
-.location-copy{position:absolute;z-index:3;left:8vw;top:50%;width:min(470px,38vw);transform:translateY(-50%);will-change:transform,opacity}.location-copy h2{margin-bottom:20px}.location-copy>p:not(.eyebrow){max-width:350px}.location-copy .button{margin-top:30px}
-.map-caption{position:absolute;z-index:3;right:5vw;bottom:30px;margin:0;color:#f6e8c9;font-size:9px;font-weight:700;letter-spacing:2px}.location-visible .map-camera{transform:scale(2.12)}.location-visible .map-marker,.location-visible .location-copy{opacity:1}
-@media(max-width:700px){.location-section{height:150svh}.map-camera{inset:-42%;transform-origin:55% 36%}.office-map{object-position:55% 36%}.map-veil{background:linear-gradient(0deg,#092018e8 8%,#0920189e 47%,#09201822 100%)}.location-copy{left:25px;right:25px;top:auto;bottom:12vh;width:auto;transform:none}.location-copy h2{font-size:clamp(35px,9vw,48px)}.map-marker{left:54%;top:38%;width:68px}.map-marker img{width:58px;height:58px}.map-caption{left:25px;right:auto;bottom:28px;font-size:7px;letter-spacing:1.3px}.location-visible .map-camera{transform:scale(1.65)}}
-@media(prefers-reduced-motion:reduce){.map-camera,.map-marker,.location-copy{will-change:auto}.location-section{height:100svh}}
