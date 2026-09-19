@@ -26,17 +26,20 @@ export function createPropertyCareScene() {
     return glow;
   });
 
-  function update(progress: number, mobile: boolean, reducedMotion: boolean) {
-    const pulse = reducedMotion ? 0 : 0.5 + Math.sin(progress * Math.PI * 2) * 0.5;
+  function update(progress: number, mobile: boolean, reducedMotion: boolean, elapsed = 0) {
+    const pulse = reducedMotion ? 0 : 0.5 + Math.sin(elapsed * 1.15 + progress * Math.PI * 2) * 0.5;
     const visible = mobile ? 0.12 : 0.2;
     gold.opacity = visible * (0.72 + pulse * 0.28);
     leaf.opacity = visible * (0.55 + pulse * 0.22);
-    group.rotation.z = reducedMotion ? 0 : progress * 0.24;
+    group.rotation.z = reducedMotion ? 0 : progress * 0.24 + elapsed * 0.075;
     group.scale.setScalar(mobile ? 0.86 : 1);
-    ringA.rotation.y = reducedMotion ? 0 : progress * 0.18;
-    ringB.rotation.y = reducedMotion ? 0 : -progress * 0.14;
+    ringA.rotation.y = reducedMotion ? 0 : progress * 0.18 + Math.sin(elapsed * 0.52) * 0.16;
+    ringB.rotation.y = reducedMotion ? 0 : -progress * 0.14 + Math.cos(elapsed * 0.42) * 0.13;
     glows.forEach((glow, index) => {
-      const flicker = reducedMotion ? 1 : 0.72 + Math.sin(progress * Math.PI * 4 + index) * 0.28;
+      const orbit = (index / glows.length) * Math.PI * 2 + (reducedMotion ? 0 : elapsed * (index % 2 ? -0.16 : 0.2));
+      const radius = 1.15 + Math.sin(elapsed * 0.6 + index) * 0.045;
+      glow.position.set(Math.cos(orbit) * radius, Math.sin(orbit) * radius, 0.04 + Math.sin(orbit * 2) * 0.055);
+      const flicker = reducedMotion ? 1 : 0.72 + Math.sin(elapsed * 1.8 + progress * Math.PI * 4 + index) * 0.28;
       glow.scale.setScalar(flicker);
     });
   }

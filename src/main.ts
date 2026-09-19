@@ -210,6 +210,8 @@ function initializeLogo() {
   const propertyCareScene = createPropertyCareScene();
   rig.add(propertyCareScene.group);
   let loaded = false;
+  let orbitFrame = 0;
+  let lastOrbitFrame = 0;
   const headingElements = chapters.map((chapter) => chapter.querySelector<HTMLElement>("h1, h2")!);
   new GLTFLoader().load("/models/maai-logo.glb", (gltf) => {
     const logo = gltf.scene;
@@ -275,7 +277,7 @@ function initializeLogo() {
     // boundary, 2π becomes 0 again, which keeps the mark front-facing.
     const turn = _still || step === 7 ? 0 : entrance * Math.PI * 2;
     rig.rotation.set(0, turn, 0);
-    propertyCareScene.update(journey / 8, mobile, _still);
+    propertyCareScene.update(journey / 8, mobile, _still, performance.now() / 1000);
     canvas.dataset.logoX = x.toFixed(4);
     canvas.dataset.logoY = y.toFixed(4);
     canvas.dataset.logoVisible = "true";
@@ -296,6 +298,18 @@ function initializeLogo() {
   canvas.addEventListener("webglcontextrestored", () => {
     canvas.style.visibility = "visible"; renderLogo(state.position, paused);
   });
+  const animateOrbit = (time: number) => {
+    orbitFrame = window.requestAnimationFrame(animateOrbit);
+    // 45fps is visually smooth for this slow ambient movement and leaves more
+    // time for video decoding and scroll work on mid-range mobile devices.
+    if (paused || document.hidden || !loaded || time - lastOrbitFrame < 1000 / 45) return;
+    lastOrbitFrame = time;
+    const mobile = window.innerWidth <= 700;
+    propertyCareScene.update(THREE.MathUtils.clamp(state.position, 0, 7.999) / 8, mobile, false, time / 1000);
+    renderer.render(scene, camera);
+  };
+  orbitFrame = window.requestAnimationFrame(animateOrbit);
+  window.addEventListener("pagehide", () => window.cancelAnimationFrame(orbitFrame), { once: true });
   renderLogo(0, paused);
 }
 try { initializeLogo(); } catch {
