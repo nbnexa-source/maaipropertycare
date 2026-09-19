@@ -1,43 +1,116 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scroll Scene</title>
-    <meta
-      name="description"
-      content="Scroll-driven Three.js camera path with GSAP ScrollTrigger and a reduced-motion fallback."
-    />
-    <link rel="stylesheet" href="/src/style.css" />
-  </head>
-  <body>
-    <!-- The 3D scene sits behind the text and never scrolls itself. -->
-    <canvas id="scene" aria-hidden="true"></canvas>
-
-    <!-- Each section is a waypoint. The camera moves between them as you scroll. -->
-    <main>
-      <section data-step="0">
-        <h1>Scroll Scene</h1>
-        <p>A camera path wired to the scrollbar. Keep scrolling.</p>
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#132b25" />
+  <title>MAAI Property Care — Your Property, Our Responsibility.</title>
+  <meta name="description" content="Discover MAAI's approach to buying, renting, resale and property management. One point of contact for your next property move." />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#services">Skip introduction</a>
+  <div class="backdrop" aria-hidden="true"></div>
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="scene-shade" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="MAAI Property Care home"><img src="/images/maai-icon-transparent.png" alt="" /><span class="brand-words"><strong>MAAI</strong> Property Care<small>Your Property, Our Responsibility</small></span></a>
+    <nav aria-label="Main navigation"><a href="#services">Our Services</a><a href="#spaces">Our Spaces</a><a href="#care">Property Care</a></nav>
+    <a class="header-cta" href="#contact">Let’s Talk <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <div id="journey">
+      <section class="chapter hero" id="top" data-step="0" aria-labelledby="hero-title">
+        <div class="chapter-copy">
+          <h1 id="hero-title">Your property.<br /><em>Our responsibility.</em></h1>
+          <p class="intro"><strong>Buy, rent, sell and manage—with one ready property partner.</strong></p>
+          <div class="actions"><a class="button" href="#contact">Book a Consultation <span aria-hidden="true">↗</span></a></div>
+        </div>
       </section>
-      <section data-step="1">
-        <h2>Waypoints</h2>
-        <p>Each section is a stop. The camera eases from one to the next.</p>
+      <section class="chapter" id="services" data-step="1" aria-labelledby="services-title">
+        <div class="chapter-copy">
+          <h2 id="services-title">Every property need.<br /><em>One partner.</em></h2>
+          <p class="chapter-lead"><strong>Professional expertise from the first conversation. Tell us where you’d like to begin.</strong></p>
+          <div class="service-list">
+            <button data-service="Buy"><span>Buy</span><span class="service-description">Find the right property <b aria-hidden="true">↗</b></span></button>
+            <button data-service="Rent"><span>Rent</span><span class="service-description">Move with confidence <b aria-hidden="true">↗</b></span></button>
+            <button data-service="Sell / Resale"><span>Sell / Resale</span><span class="service-description">Position your property well <b aria-hidden="true">↗</b></span></button>
+            <button data-service="Property management"><span>Property Management</span><span class="service-description">Complete care, one contact <b aria-hidden="true">↗</b></span></button>
+          </div>
+        </div>
       </section>
-      <section data-step="2">
-        <h2>Scrubbed</h2>
-        <p>Motion is tied to scroll position, so it runs forward and backward.</p>
+      <section class="chapter" id="approach" data-step="2" aria-labelledby="approach-title">
+        <div class="chapter-copy">
+          <h2 id="approach-title">Clear advice.<br /><em>Confident decisions.</em></h2>
+          <p>Your requirements come first. Understand your options, the proposed costs and the next steps before you commit.</p>
+          <ul class="principles"><li><span>01</span> A brief built around you</li><li><span>02</span> Scope and fees explained upfront</li><li><span>03</span> A clear point of contact</li></ul>
+          <a class="text-link" href="#contact" data-questionnaire="General consultation">Let’s understand your needs <span aria-hidden="true">↗</span></a>
+        </div>
       </section>
-      <section data-step="3">
-        <h2>Accessible</h2>
-        <p>Turn on "reduce motion" and the camera jumps instead of sweeping.</p>
+      <section class="chapter" id="spaces" data-step="3" aria-labelledby="spaces-title">
+        <div class="chapter-copy">
+          <h2 id="spaces-title" class="minimal-title">First home. Room to grow.<br /><em>A new business address.</em></h2>
+          <p>Let’s start with what matters to you.</p>
+          <div class="space-grid" role="group" aria-label="Explore property types">
+            <a href="/property.html?type=affordable"><span class="property-icon">01</span><strong>Affordable Homes</strong><span>Smart beginnings, lasting value</span></a>
+            <a href="/property.html?type=luxury"><span class="property-icon">02</span><strong>Luxury Residences</strong><span>Refined living, carefully selected</span></a>
+            <a href="/property.html?type=commercial"><span class="property-icon">03</span><strong>Commercial Spaces</strong><span>Room for your ambition</span></a>
+            <a href="/property.html?type=plots"><span class="property-icon">04</span><strong>Plots</strong><span>Build from possibility</span></a>
+          </div>
+        </div>
       </section>
-      <section data-step="4">
-        <h2>Make it yours</h2>
-        <p>Edit the waypoints array in <code>src/main.ts</code>.</p>
+      <section class="chapter" id="move" data-step="4" aria-labelledby="move-title">
+        <div class="chapter-copy">
+          <h2 id="move-title">The right consultancy.<br /><em>A clearer way forward.</em></h2>
+          <p class="chapter-lead"><strong>We listen first, compare the right options and explain every important step—so your property decision feels informed, transparent and entirely yours.</strong></p>
+          <ul class="consultancy-points"><li>Requirement-led recommendations</li><li>Clear comparisons and due-diligence prompts</li><li>One expert point of contact</li></ul>
+          <button class="button" data-service="General consultation">Speak with a consultant <span aria-hidden="true">↗</span></button>
+        </div>
       </section>
-    </main>
-
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+      <section class="chapter" id="care" data-step="5" aria-labelledby="care-title">
+        <div class="chapter-copy">
+          <h2 id="care-title">Close to your home.<br /><em>Even when you’re away.</em></h2>
+          <p>A single point of contact for the everyday details. Build a care plan around your property and the support you need.</p>
+          <ul class="care-grid"><li>Tenant coordination</li><li>Property inspections</li><li>Maintenance coordination</li><li>Rent tracking</li></ul>
+          <p class="fine-print">Service scope and availability are confirmed in your personalised proposal.</p>
+          <button class="text-link" data-service="Property management">Discuss a property care plan <span aria-hidden="true">↗</span></button>
+        </div>
+      </section>
+      <section class="chapter" id="process" data-step="6" aria-labelledby="process-title">
+        <div class="chapter-copy">
+          <h2 id="process-title">Less to coordinate.<br /><em>More peace of mind.</em></h2><p>One point of contact. A clear way forward.</p>
+          <ol class="process-list"><li><span>01</span><div><h3>Tell us what you need</h3><p>Your property, priorities and plans.</p></div></li><li><span>02</span><div><h3>Review your proposal</h3><p>Understand the scope, fees and next steps.</p></div></li><li><span>03</span><div><h3>Give us the go-ahead</h3><p>Agree on the plan before work begins.</p></div></li><li><span>04</span><div><h3>Stay in the picture</h3><p>One contact for progress and questions.</p></div></li></ol>
+        </div>
+      </section>
+      <section class="chapter closing" id="next" data-step="7" aria-labelledby="next-title">
+        <div class="chapter-copy closing-lockup"><img src="/images/maai-icon-transparent.png" alt="MAAI Property Care" /><div><p class="eyebrow">Why choose us?</p><h2 id="next-title">One point solution.<br /><em>For all your property needs.</em></h2><p>Clear advice, coordinated support and one responsible partner from the first question to the next move.</p></div></div>
+      </section>
+    </div>
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-top"><p class="eyebrow">A conversation is a good place to start</p><span>MAAI / PROPERTY CARE</span></div>
+      <div class="contact-layout">
+        <div class="contact-copy"><h2 id="contact-title">Tell us about<br /><em>your next move.</em></h2><p>Share a few details to prepare your consultation brief.</p><div class="contact-note"><span aria-hidden="true">↗</span><p>One property partner.<br />From possibilities to peace of mind.</p></div></div>
+        <form id="enquiry-form" class="consultation-form">
+          <div class="form-heading"><span>Consultation brief</span><strong>Tell us what you need</strong><p>Complete the essentials below, or use the guided questionnaire for service-specific questions.</p></div>
+          <div class="field-row"><label>Your name<input name="name" autocomplete="name" placeholder="Full name" required maxlength="100" /></label><label>Phone or email<input name="contact" placeholder="How can we reach you?" required maxlength="150" /></label></div>
+          <div class="field-row"><label>I’d like help with<select name="service" required><option value="">Select a service</option><option>Buy</option><option>Rent</option><option>Sell / Resale</option><option>Let my property</option><option>Property management</option><option>General consultation</option></select></label><label>Property type<select name="property"><option value="">Select a property type</option><option>Affordable homes</option><option>Luxury residences</option><option>Commercial spaces</option><option>Plots</option></select></label></div>
+          <div class="field-row"><label>Preferred location<input name="location" placeholder="City or neighbourhood" required maxlength="150" /></label><label>Budget (optional)<input name="budget" placeholder="Your preferred range" maxlength="100" /></label></div>
+          <label>A little more about your plans (optional)<textarea name="message" rows="2" placeholder="Tell us what matters to you" maxlength="1500"></textarea></label>
+          <p class="form-notice">Preview mode: this form prepares a brief on your device. It does not send an enquiry or store your details.</p>
+          <div class="form-actions"><button class="button dark-button" type="submit" disabled>Prepare my consultation brief <span aria-hidden="true">↗</span></button><button class="guided-form-button" type="button" data-questionnaire="General consultation">Open guided questionnaire</button></div>
+          <noscript><p class="form-notice">Enable JavaScript to prepare a brief. This preview does not send enquiries.</p></noscript>
+          <div id="brief-result" class="brief-result" hidden><p role="status">Your brief is ready. Nothing has been sent.</p><pre id="brief-text"></pre><button class="text-link" id="copy-brief" type="button">Copy brief <span aria-hidden="true">↗</span></button><p id="copy-status" role="status"></p></div>
+        </form>
+      </div>
+      <div class="faq-layout"><div><p class="eyebrow">A little clarity</p><h3>Before we begin.</h3></div><div class="faq-list">
+        <details><summary>Can I enquire about more than one service?<span aria-hidden="true">+</span></summary><p>Yes. Choose the main service you need and add any other requirements in your brief.</p></details>
+        <details><summary>How are fees and service scope agreed?<span aria-hidden="true">+</span></summary><p>Your consultation should establish the required services, available support and fees. Review the proposal before deciding to proceed.</p></details>
+        <details><summary>Can I discuss a property while living elsewhere?<span aria-hidden="true">+</span></summary><p>Include the property location and your current location in your brief so remote support and local availability can be discussed.</p></details>
+      </div></div>
+    </section>
+  </main>
+  <footer><a class="brand" href="#top" aria-label="MAAI Property Care home"><img src="/images/maai-icon-transparent.png" alt="" /><span class="brand-words"><strong>MAAI</strong> Property Care</span></a><p>Your Property, Our Responsibility.</p><a href="#top">Back to the beginning ↑</a><small>Website preview · Service areas and contact details to be confirmed.</small></footer>
+  <a class="floating-talk" href="#contact">Talk to Us Now <span aria-hidden="true">↗</span></a>
+  <noscript><style>#scene,.chapter-nav{display:none}.backdrop{opacity:1!important}</style></noscript>
+  <script type="module" src="/src/main.ts"></script>
+</body>
 </html>

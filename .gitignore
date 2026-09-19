@@ -3,3 +3,5 @@ dist
 *.local
 .DS_Store
 .vscode
+.tools/
+__pycache__/

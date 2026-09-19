@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#102b22" />
+  <title>Property Guidance | MAAI Property Care</title>
+  <meta name="description" content="A concise Gurugram property overview and a guided visit request from MAAI Property Care." />
+  <link rel="stylesheet" href="/src/property.css" />
+</head>
+<body>
+  <header class="detail-header">
+    <a class="detail-brand" href="/"><img src="/images/maai-icon-transparent.png" alt="" /><span><strong>MAAI</strong> Property Care<small>Your Property, Our Responsibility</small></span></a>
+    <nav><a href="/#spaces">All property types</a><a class="header-action" href="#visit-form">Book a Visit ↗</a></nav>
+  </header>
+  <main>
+    <section class="detail-hero">
+      <div class="detail-orb" aria-hidden="true"><img src="/images/maai-icon-transparent.png" alt="" /></div>
+      <div class="detail-hero-copy"><p class="detail-kicker" id="category"></p><h1 id="title"></h1><p class="detail-summary" id="summary"></p><div class="detail-actions"><a class="primary-action" href="#visit-form">Talk to book a visit <span>↗</span></a><a href="#market-note">Read the brief ↓</a></div></div>
+    </section>
+    <section class="detail-brief" id="market-note">
+      <div class="section-heading"><p>Gurugram property brief</p><h2 id="brief-title"></h2><span>Concise guidance—not a listing, valuation or legal opinion.</span></div>
+      <div class="insight-grid" id="insights"></div>
+    </section>
+    <section class="market-strip"><div><p>Market lens</p><h2 id="market-title"></h2></div><p id="market-copy"></p></section>
+    <section class="check-section"><div><p class="detail-kicker">Before you decide</p><h2>Verify first.<br /><em>Then move.</em></h2></div><ol id="checklist"></ol></section>
+    <section class="source-section"><p>Research references</p><div id="sources"></div><small>Information reviewed 17 September 2026. Project availability, prices, approvals and registration timelines can change; verify the latest project-specific record before committing.</small></section>
+    <section class="visit-section" id="visit-form">
+      <div class="visit-copy"><p class="detail-kicker">A useful first conversation</p><h2>Book a visit.<br /><em>Bring your questions.</em></h2><p>Tell us what matters. We’ll prepare a focused requirement brief for the selected property category.</p></div>
+      <form id="visit-request">
+        <div class="form-title"><span id="form-category"></span><strong>Visit &amp; consultation request</strong></div>
+        <div class="field-pair"><label>Your name<input name="name" autocomplete="name" required placeholder="Full name" /></label><label>Phone or email<input name="contact" required placeholder="How can we reach you?" /></label></div>
+        <div class="field-pair"><label>Preferred location<input name="location" required placeholder="Sector, corridor or project" /></label><label>Budget / expected range<input name="budget" placeholder="Your comfortable range" /></label></div>
+        <div class="field-pair"><label>When would you like to visit?<input name="visit" type="date" /></label><label>Your current stage<select name="stage"><option>Just exploring</option><option>Shortlisting</option><option>Ready to visit</option><option>Ready to proceed</option></select></label></div>
+        <label>Key requirements<textarea name="requirements" rows="4" required placeholder="Size, use, timeline, must-haves and questions"></textarea></label>
+        <p class="privacy-note">Preview only: this prepares a brief on your device. It does not send or store your information.</p>
+        <button type="submit">Prepare visit brief <span>↗</span></button>
+        <div class="visit-result" hidden><p>Your brief is ready. Nothing has been sent.</p><pre></pre><button type="button" id="copy-visit">Copy brief</button><small role="status"></small></div>
+      </form>
+    </section>
+  </main>
+  <footer><a href="/">← Back to MAAI Property Care</a><p>Your Property, Our Responsibility.</p></footer>
+  <script type="module" src="/src/property.ts"></script>
+</body>
+</html>

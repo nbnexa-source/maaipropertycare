@@ -4,4 +4,12 @@ import { defineConfig } from "vite";
 // GitHub Pages project subpath.
 export default defineConfig({
   base: "./",
+  build: {
+    rollupOptions: {
+      input: {
+        main: "index.html",
+        property: "property.html",
+      },
+    },
+  },
 });
