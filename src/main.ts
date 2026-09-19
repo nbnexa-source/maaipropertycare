@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { finishLogo } from "./logo-materials";
 import { setupEnquiry } from "./enquiry";
 import { createVideoFlow } from "./video-flow";
+import { createPropertyCareScene } from "./property-care-scene";
 
 gsap.registerPlugin(ScrollTrigger);
 const chapters = Array.from(document.querySelectorAll<HTMLElement>(".chapter"));
@@ -126,6 +127,62 @@ function initializeElementEffects() {
 }
 initializeElementEffects();
 
+function initializePremiumMotion() {
+  if (motionPreference.matches) return;
+  document.body.classList.add("motion-enhanced");
+
+  // A short opening composition: the headline leads, then the supporting copy
+  // and CTA settle in. It remains intentionally restrained for readability.
+  const heroCopy = document.querySelector<HTMLElement>(".hero .chapter-copy");
+  if (heroCopy) {
+    const heroSupport = Array.from(heroCopy.querySelectorAll<HTMLElement>("p, .actions"));
+    gsap.fromTo(heroSupport,
+      { autoAlpha: 0, y: 18 },
+      { autoAlpha: 1, y: 0, duration: 0.78, stagger: 0.1, ease: "power3.out", delay: 0.28 },
+    );
+  }
+
+  document.querySelectorAll<HTMLElement>(".eyebrow").forEach((eyebrow) => {
+    gsap.fromTo(eyebrow,
+      { autoAlpha: 0, x: -14, letterSpacing: "0.8px" },
+      { autoAlpha: 1, x: 0, letterSpacing: "2.5px", duration: 0.68, ease: "power3.out", scrollTrigger: { trigger: eyebrow, start: "top 89%", once: true } },
+    );
+  });
+
+  const spaces = document.querySelector<HTMLElement>("#spaces .space-grid");
+  if (spaces) {
+    gsap.fromTo(spaces, { y: 26 }, {
+      y: -12,
+      ease: "none",
+      scrollTrigger: { trigger: "#spaces", start: "top bottom", end: "bottom top", scrub: 0.55 },
+    });
+  }
+
+  const process = document.querySelector<HTMLElement>(".process-list");
+  if (process) {
+    gsap.fromTo(process, { "--path-progress": 0 }, {
+      "--path-progress": 1,
+      ease: "none",
+      scrollTrigger: { trigger: process, start: "top 78%", end: "bottom 58%", scrub: 0.45 },
+    });
+  }
+
+  // Small magnetic response gives CTAs a physical feel without shifting layout.
+  document.querySelectorAll<HTMLElement>(".button, .header-cta, .floating-talk, .guided-form-button").forEach((element) => {
+    element.addEventListener("pointermove", (event) => {
+      if (event.pointerType === "touch") return;
+      const rect = element.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 7;
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 7;
+      gsap.to(element, { x, y, duration: 0.34, ease: "power3.out", overwrite: "auto" });
+    });
+    element.addEventListener("pointerleave", () => {
+      gsap.to(element, { x: 0, y: 0, duration: 0.62, ease: "elastic.out(1, 0.55)", overwrite: "auto" });
+    });
+  });
+}
+initializePremiumMotion();
+
 function initializeLogo() {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth <= 700 ? 1.5 : 1.75));
@@ -150,6 +207,8 @@ function initializeLogo() {
   scene.add(rim);
   const rig = new THREE.Group();
   scene.add(rig);
+  const propertyCareScene = createPropertyCareScene();
+  rig.add(propertyCareScene.group);
   let loaded = false;
   const headingElements = chapters.map((chapter) => chapter.querySelector<HTMLElement>("h1, h2")!);
   new GLTFLoader().load("/models/maai-logo.glb", (gltf) => {
@@ -170,7 +229,9 @@ function initializeLogo() {
     const step = Math.min(7, Math.floor(journey));
     const local = journey - step;
     const next = Math.min(7, step + 1);
-    const horizontal = THREE.MathUtils.smootherstep(local, 0.06, 0.94);
+    // Preserve the original left/right rhythm on every chapter change. The
+    // travel begins with the first scroll movement and lands at the boundary.
+    const horizontal = THREE.MathUtils.smootherstep(local, 0, 1);
     const sideAt = (chapter: number) => chapter % 2 ? -1 : 1;
     const side = THREE.MathUtils.lerp(sideAt(step), sideAt(next), horizontal);
     const x = mobile ? 0.5 : 0.5 + side * 0.235;
@@ -204,6 +265,9 @@ function initializeLogo() {
     const scale = THREE.MathUtils.lerp(currentScale, nextScale, horizontal);
     camera.aspect = w / h;
     camera.zoom = mobile ? Math.min(0.74, w / h * 1.35) : Math.min(1, w / h * 0.68);
+    // A gentle dolly adds depth to the existing view-offset camera path while
+    // keeping the logo alignment with each chapter's typography intact.
+    camera.position.z = 6 - (mobile ? 0.1 : 0.22) * Math.sin(local * Math.PI);
     camera.setViewOffset(w, h, (0.5 - x) * w, (0.5 - y) * h, w, h);
     camera.updateProjectionMatrix();
     rig.scale.setScalar(scale);
@@ -211,6 +275,7 @@ function initializeLogo() {
     // boundary, 2π becomes 0 again, which keeps the mark front-facing.
     const turn = _still || step === 7 ? 0 : entrance * Math.PI * 2;
     rig.rotation.set(0, turn, 0);
+    propertyCareScene.update(journey / 8, mobile, _still);
     canvas.dataset.logoX = x.toFixed(4);
     canvas.dataset.logoY = y.toFixed(4);
     canvas.dataset.logoVisible = "true";
