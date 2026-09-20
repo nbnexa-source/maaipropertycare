@@ -1,4 +1,6 @@
-export {};
+import { initializeParticleBackground } from "./particle-background";
+
+initializeParticleBackground(document.querySelector<HTMLCanvasElement>("#particle-scene"));
 
 type PropertyPage = {
   category: string;

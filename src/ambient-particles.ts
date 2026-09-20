@@ -53,7 +53,7 @@ export function createAmbientParticles(mobile: boolean) {
       }
       geometry.attributes.position.needsUpdate = true;
     }
-    material.opacity = (mobile ? 0.22 : 0.3) * (0.84 + Math.sin(elapsed * 0.55 + progress) * 0.16);
+    material.opacity = (mobile ? 0.22 : 0.3) * (reducedMotion ? 1 : 0.84 + Math.sin(elapsed * 0.55 + progress) * 0.16);
   }
 
   function dispose() {

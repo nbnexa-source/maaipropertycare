@@ -7,7 +7,7 @@ import { finishLogo } from "./logo-materials";
 import { setupEnquiry } from "./enquiry";
 import { createVideoFlow } from "./video-flow";
 import { createPropertyCareScene } from "./property-care-scene";
-import { createAmbientParticles } from "./ambient-particles";
+import { initializeParticleBackground } from "./particle-background";
 
 gsap.registerPlugin(ScrollTrigger);
 const chapters = Array.from(document.querySelectorAll<HTMLElement>(".chapter"));
@@ -27,6 +27,7 @@ let activeChapter = -1;
 let renderLogo: (position: number, still: boolean) => void = () => {};
 let resizeLogo = () => {};
 setupEnquiry(() => {});
+initializeParticleBackground(document.querySelector<HTMLCanvasElement>("#particle-scene"));
 
 function measure() {
   starts = chapters.map((chapter) => chapter.getBoundingClientRect().top + window.scrollY);
@@ -208,8 +209,6 @@ function initializeLogo() {
   scene.add(rim);
   const rig = new THREE.Group();
   scene.add(rig);
-  const ambientParticles = createAmbientParticles(window.innerWidth <= 700);
-  scene.add(ambientParticles.points);
   const propertyCareScene = createPropertyCareScene();
   rig.add(propertyCareScene.group);
   let loaded = false;
@@ -281,7 +280,6 @@ function initializeLogo() {
     const turn = _still || step === 7 ? 0 : entrance * Math.PI * 2;
     rig.rotation.set(0, turn, 0);
     propertyCareScene.update(journey / 8, mobile, _still, performance.now() / 1000);
-    ambientParticles.update(performance.now() / 1000, journey / 8, _still);
     canvas.dataset.logoX = x.toFixed(4);
     canvas.dataset.logoY = y.toFixed(4);
     canvas.dataset.logoVisible = "true";
@@ -310,13 +308,11 @@ function initializeLogo() {
     lastOrbitFrame = time;
     const mobile = window.innerWidth <= 700;
     propertyCareScene.update(THREE.MathUtils.clamp(state.position, 0, 7.999) / 8, mobile, false, time / 1000);
-    ambientParticles.update(time / 1000, THREE.MathUtils.clamp(state.position, 0, 7.999) / 8, false);
     renderer.render(scene, camera);
   };
   orbitFrame = window.requestAnimationFrame(animateOrbit);
   window.addEventListener("pagehide", () => {
     window.cancelAnimationFrame(orbitFrame);
-    ambientParticles.dispose();
   }, { once: true });
   renderLogo(0, paused);
 }
