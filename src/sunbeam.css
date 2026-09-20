@@ -1,0 +1,36 @@
+/* Broad sunlight and narrower shafts entering from the upper left. */
+.ambient-motion .ambient-rays,
+body .property-light-rays {
+  position: fixed;
+  inset: -15vh auto auto 5vw;
+  width: min(65vw, 950px);
+  height: 140vh;
+  pointer-events: none;
+  transform-origin: 15% 0;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(255,229,185,.03) 10%,
+    rgba(255,229,185,.22) 18%, rgba(255,236,208,.06) 24%,
+    transparent 28%, rgba(255,233,196,.16) 34%,
+    transparent 43%, rgba(255,233,196,.12) 51%,
+    transparent 59%, rgba(255,233,196,.06) 70%, transparent 88%);
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 48%, transparent 95%);
+  filter: blur(7px);
+  mix-blend-mode: screen;
+  animation: sunlight-drift 22s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+/* Above the shade, below the foreground logo and copy. */
+body #particle-scene { z-index: 2; opacity: .95; }
+body .property-light-rays { z-index: 1; }
+@keyframes sunlight-drift {
+  from { transform: rotate(-29deg) translate3d(-1vw,0,0); opacity: .65; }
+  to { transform: rotate(-25deg) translate3d(2vw,0,0); opacity: .95; }
+}
+@media (max-width: 700px) {
+  .ambient-motion .ambient-rays, body .property-light-rays { width: 95vw; opacity: .65; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-motion .ambient-rays, body .property-light-rays {
+    animation: none; transform: rotate(-27deg); opacity: .65; will-change: auto;
+  }
+}

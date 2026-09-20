@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { createAmbientParticles } from "./ambient-particles";
+import "./sunbeam.css";
 
 /** A shared, fixed 3D particle canvas that stays behind page content. */
 export function initializeParticleBackground(canvas: HTMLCanvasElement | null) {
