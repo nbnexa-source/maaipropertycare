@@ -6,6 +6,7 @@ export function createAmbientParticles(mobile: boolean) {
   const positions = new Float32Array(count * 3);
   const base = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
+  const baseColors = new Float32Array(count * 3);
   const phase = new Float32Array(count);
   const gold = new THREE.Color(0xe5c078);
   const green = new THREE.Color(0xffefd6);
@@ -17,7 +18,7 @@ export function createAmbientParticles(mobile: boolean) {
     // the entire field visually behind the logo and foreground copy.
     base[offset] = (Math.random() - 0.5) * (mobile ? 10 : 17);
     base[offset + 1] = (Math.random() - 0.5) * (mobile ? 9 : 12);
-    base[offset + 2] = -2.2 - Math.random() * 6.5;
+    base[offset + 2] = -12 + Math.random() * 15;
     positions[offset] = base[offset];
     positions[offset + 1] = base[offset + 1];
     positions[offset + 2] = base[offset + 2];
@@ -27,6 +28,7 @@ export function createAmbientParticles(mobile: boolean) {
     colors[offset + 1] = color.g;
     colors[offset + 2] = color.b;
   }
+  baseColors.set(colors);
 
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
@@ -54,19 +56,29 @@ export function createAmbientParticles(mobile: boolean) {
     sizeAttenuation: true,
   });
   const points = new THREE.Points(geometry, material);
+  // The volume recycles with the camera; its initial bounds are not static.
+  points.frustumCulled = false;
 
-  function update(elapsed: number, progress: number, reducedMotion: boolean) {
-    if (!reducedMotion) {
+  function update(elapsed: number, scrollScreens: number, reducedMotion: boolean) {
+    const time = reducedMotion ? 0 : elapsed;
+    const travel = reducedMotion ? 0 : scrollScreens * 1.25;
       for (let index = 0; index < count; index++) {
         const offset = index * 3;
-        const wave = elapsed * (0.14 + (index % 5) * 0.018) + phase[index] + progress * 0.28;
-        positions[offset] = base[offset] + Math.sin(wave) * 0.13;
-        positions[offset + 1] = base[offset + 1] + Math.cos(wave * 1.2) * 0.18;
-        positions[offset + 2] = base[offset + 2] + Math.sin(wave * 0.72) * 0.045;
+        const wave = time * (0.19 + (index % 5) * 0.024) + phase[index];
+        // Slow, independent air currents with actual perspective depth travel.
+        positions[offset] = base[offset] + Math.sin(wave) * 0.38 + Math.sin(wave * 0.43) * 0.16;
+        positions[offset + 1] = base[offset + 1] + Math.cos(wave * 0.72) * 0.55;
+        const depth = THREE.MathUtils.euclideanModulo(base[offset + 2] + 12 + travel + Math.sin(wave * 0.5) * 0.22, 15);
+        positions[offset + 2] = depth - 12;
+        // Fade both ends of the volume so recycling never flashes or pops.
+        const fade = THREE.MathUtils.smoothstep(depth, 0, 2) * (1 - THREE.MathUtils.smoothstep(depth, 12, 15));
+        for (let channel = 0; channel < 3; channel++) {
+          colors[offset + channel] = baseColors[offset + channel] * fade;
+        }
       }
       geometry.attributes.position.needsUpdate = true;
-    }
-    material.opacity = (mobile ? 0.6 : 0.72) * (reducedMotion ? 1 : 0.92 + Math.sin(elapsed * 0.3 + progress) * 0.08);
+      geometry.attributes.color.needsUpdate = true;
+    material.opacity = (mobile ? 0.6 : 0.72);
   }
 
   function dispose() {

@@ -14,6 +14,7 @@ export function initializeParticleBackground(canvas: HTMLCanvasElement | null) {
   scene.add(particles.points);
   let frame = 0;
   let lastFrame = 0;
+  let scrollScreens = window.scrollY / Math.max(1, window.innerHeight);
 
   function resize() {
     const width = window.innerWidth;
@@ -27,10 +28,13 @@ export function initializeParticleBackground(canvas: HTMLCanvasElement | null) {
   function draw(time: number) {
     frame = window.requestAnimationFrame(draw);
     if (document.hidden || time - lastFrame < 1000 / 40) return;
+    const delta = Math.min((time - lastFrame) / 1000, 0.1);
     lastFrame = time;
-    const scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    const progress = window.scrollY / scrollable;
-    particles.update(time / 1000, progress, reducedMotion.matches);
+    const target = window.scrollY / Math.max(1, window.innerHeight);
+    scrollScreens = THREE.MathUtils.lerp(scrollScreens, target, 1 - Math.exp(-7 * delta));
+    camera.position.x = reducedMotion.matches ? 0 : Math.sin(scrollScreens * 0.4) * 0.32;
+    camera.position.y = reducedMotion.matches ? 0 : Math.sin(scrollScreens * 0.3) * 0.18;
+    particles.update(time / 1000, scrollScreens, reducedMotion.matches);
     renderer.render(scene, camera);
   }
 
