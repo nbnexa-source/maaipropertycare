@@ -32,9 +32,9 @@ export function createAmbientParticles(mobile: boolean) {
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
   geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
   const material = new THREE.PointsMaterial({
-    size: mobile ? 0.026 : 0.032,
+    size: mobile ? 0.045 : 0.062,
     transparent: true,
-    opacity: mobile ? 0.22 : 0.3,
+    opacity: mobile ? 0.3 : 0.4,
     vertexColors: true,
     blending: THREE.AdditiveBlending,
     depthWrite: false,
@@ -53,7 +53,7 @@ export function createAmbientParticles(mobile: boolean) {
       }
       geometry.attributes.position.needsUpdate = true;
     }
-    material.opacity = (mobile ? 0.22 : 0.3) * (reducedMotion ? 1 : 0.84 + Math.sin(elapsed * 0.55 + progress) * 0.16);
+    material.opacity = (mobile ? 0.3 : 0.4) * (reducedMotion ? 1 : 0.84 + Math.sin(elapsed * 0.55 + progress) * 0.16);
   }
 
   function dispose() {

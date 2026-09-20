@@ -137,6 +137,7 @@ footer{z-index:3}
 /* Slow ambient light adds life between scroll events without competing with copy. */
 .ambient-motion{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none;mix-blend-mode:screen}
 .ambient-motion:before{content:'';position:absolute;inset:-12%;background:radial-gradient(ellipse at 18% 22%,#e7bd6d19 0 4%,transparent 28%),radial-gradient(ellipse at 82% 74%,#73b75d17 0 5%,transparent 30%);animation:ambient-wash 18s ease-in-out infinite alternate;will-change:transform,opacity}
+.ambient-rays{position:absolute;left:-34vw;top:-34vh;width:135vw;height:120vh;display:block;transform-origin:11% 4%;background:conic-gradient(from 53deg at 11% 4%,transparent 0deg,transparent 7deg,#f5d89718 8deg,transparent 17deg,transparent 24deg,#f5d89712 25deg,transparent 34deg,transparent 43deg,#f5d8970e 44deg,transparent 56deg);filter:blur(8px);opacity:.9;animation:ambient-rays 16s ease-in-out infinite alternate;will-change:transform,opacity}
 .ambient-orb{position:absolute;display:block;border-radius:50%;filter:blur(1px);opacity:.34;will-change:transform,opacity}
 .ambient-orb-one{width:29vw;height:29vw;left:-9vw;top:23vh;background:radial-gradient(circle,#d9b36a4d 0,transparent 68%);animation:ambient-float-one 15s ease-in-out infinite alternate}
 .ambient-orb-two{width:35vw;height:35vw;right:-12vw;top:8vh;background:radial-gradient(circle,#80bd6640 0,transparent 68%);animation:ambient-float-two 21s ease-in-out infinite alternate}
@@ -145,5 +146,6 @@ footer{z-index:3}
 @keyframes ambient-float-one{0%{transform:translate3d(-3vw,-2vh,0) scale(.92)}100%{transform:translate3d(9vw,8vh,0) scale(1.08)}}
 @keyframes ambient-float-two{0%{transform:translate3d(3vw,-4vh,0) scale(1)}100%{transform:translate3d(-10vw,12vh,0) scale(1.12)}}
 @keyframes ambient-float-three{0%{transform:translate3d(-2vw,3vh,0) scale(.94);opacity:.18}100%{transform:translate3d(5vw,-7vh,0) scale(1.1);opacity:.45}}
+@keyframes ambient-rays{0%{transform:rotate(-3deg) translate3d(-2vw,-1vh,0) scale(.96);opacity:.45}100%{transform:rotate(2deg) translate3d(4vw,3vh,0) scale(1.06);opacity:.9}}
 @media(max-width:700px){.ambient-motion:before{animation-duration:22s}.ambient-orb-one{width:64vw;height:64vw;left:-30vw}.ambient-orb-two{width:76vw;height:76vw;right:-41vw}.ambient-orb-three{display:none}}
 @media(prefers-reduced-motion:reduce){.ambient-motion{display:none}}
