@@ -1,8 +1,8 @@
 import * as THREE from "three";
 
-/** Lightweight depth field rendered behind the MAAI logo. */
+/** Full-scene atmospheric depth field, kept behind all foreground logo motion. */
 export function createAmbientParticles(mobile: boolean) {
-  const count = mobile ? 42 : 88;
+  const count = mobile ? 48 : 104;
   const positions = new Float32Array(count * 3);
   const base = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
@@ -13,16 +13,16 @@ export function createAmbientParticles(mobile: boolean) {
 
   for (let index = 0; index < count; index++) {
     const offset = index * 3;
-    const radius = 1.1 + Math.random() * 3.2;
-    const angle = Math.random() * Math.PI * 2;
-    base[offset] = Math.cos(angle) * radius;
-    base[offset + 1] = (Math.random() - 0.5) * 4.4;
-    base[offset + 2] = -1.8 + Math.random() * 2.7;
+    // Spread across a large box rather than around the logo. Negative Z keeps
+    // the entire field visually behind the logo and foreground copy.
+    base[offset] = (Math.random() - 0.5) * (mobile ? 10 : 17);
+    base[offset + 1] = (Math.random() - 0.5) * (mobile ? 9 : 12);
+    base[offset + 2] = -2.2 - Math.random() * 6.5;
     positions[offset] = base[offset];
     positions[offset + 1] = base[offset + 1];
     positions[offset + 2] = base[offset + 2];
     phase[index] = Math.random() * Math.PI * 2;
-    color.copy(index % 3 === 0 ? gold : green).multiplyScalar(0.72 + Math.random() * 0.28);
+    color.copy(index % 5 === 0 ? gold : green).multiplyScalar(0.62 + Math.random() * 0.25);
     colors[offset] = color.r;
     colors[offset + 1] = color.g;
     colors[offset + 2] = color.b;
@@ -32,9 +32,9 @@ export function createAmbientParticles(mobile: boolean) {
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
   geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
   const material = new THREE.PointsMaterial({
-    size: mobile ? 0.028 : 0.034,
+    size: mobile ? 0.026 : 0.032,
     transparent: true,
-    opacity: mobile ? 0.3 : 0.42,
+    opacity: mobile ? 0.22 : 0.3,
     vertexColors: true,
     blending: THREE.AdditiveBlending,
     depthWrite: false,
@@ -46,15 +46,14 @@ export function createAmbientParticles(mobile: boolean) {
     if (!reducedMotion) {
       for (let index = 0; index < count; index++) {
         const offset = index * 3;
-        const wave = elapsed * (0.18 + (index % 5) * 0.025) + phase[index] + progress * 1.6;
-        positions[offset] = base[offset] + Math.sin(wave) * 0.09;
-        positions[offset + 1] = base[offset + 1] + Math.cos(wave * 1.3) * 0.14;
-        positions[offset + 2] = base[offset + 2] + Math.sin(wave * 0.7) * 0.07;
+        const wave = elapsed * (0.14 + (index % 5) * 0.018) + phase[index] + progress * 0.28;
+        positions[offset] = base[offset] + Math.sin(wave) * 0.13;
+        positions[offset + 1] = base[offset + 1] + Math.cos(wave * 1.2) * 0.18;
+        positions[offset + 2] = base[offset + 2] + Math.sin(wave * 0.72) * 0.045;
       }
       geometry.attributes.position.needsUpdate = true;
-      points.rotation.z = Math.sin(elapsed * 0.08) * 0.035;
     }
-    material.opacity = (mobile ? 0.3 : 0.42) * (0.82 + Math.sin(elapsed * 0.7 + progress) * 0.18);
+    material.opacity = (mobile ? 0.22 : 0.3) * (0.84 + Math.sin(elapsed * 0.55 + progress) * 0.16);
   }
 
   function dispose() {
