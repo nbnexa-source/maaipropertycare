@@ -216,7 +216,7 @@ function initializeLogo() {
   let lastOrbitFrame = 0;
   const headingElements = chapters.map((chapter) => chapter.querySelector<HTMLElement>("h1, h2")!);
   // Defer the 1.6 MB logo model until the browser is idle after first paint.
-  const loadModel = (cb: () => void) => ("requestIdleCallback" in window ? (window as any).requestIdleCallback(cb, { timeout: 800 }) : setTimeout(cb, 200));
+  const loadModel = (cb: () => void) => ("requestIdleCallback" in window ? window.requestIdleCallback(cb, { timeout: 800 }) : setTimeout(cb, 200));
   loadModel(() => new GLTFLoader().load("/models/maai-logo.glb", (gltf) => {
     const logo = gltf.scene;
     logo.position.sub(new THREE.Box3().setFromObject(logo).getCenter(new THREE.Vector3()));

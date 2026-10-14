@@ -25,7 +25,7 @@ export function createVideoFlow() {
       : "/videos/maai-property-scroll-v5.mp4";
     video.load();
   };
-  const idle = (cb: () => void) => ("requestIdleCallback" in window ? (window as any).requestIdleCallback(cb, { timeout: 1500 }) : setTimeout(cb, 300));
+  const idle = (cb: () => void) => ("requestIdleCallback" in window ? window.requestIdleCallback(cb, { timeout: 1500 }) : setTimeout(cb, 300));
   if (document.readyState === "complete") idle(attachSource);
   else window.addEventListener("load", () => idle(attachSource), { once: true });
   window.addEventListener("scroll", attachSource, { once: true, passive: true });
