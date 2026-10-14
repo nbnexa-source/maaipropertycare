@@ -19,7 +19,7 @@ export function initializeParticleBackground(canvas: HTMLCanvasElement | null) {
   function resize() {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, width <= 700 ? 1.25 : 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, width <= 700 ? 1 : 1.5));
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();

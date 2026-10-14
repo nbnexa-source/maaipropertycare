@@ -7,15 +7,28 @@ export function createVideoFlow() {
   video.muted = true;
   video.defaultMuted = true;
   video.playsInline = true;
-  video.preload = "auto";
+  video.preload = "none";
   video.poster = "/videos/maai-property-poster-v4.jpg";
   video.setAttribute("aria-hidden", "true");
   video.setAttribute("disablepictureinpicture", "");
   video.tabIndex = -1;
-  video.src = window.innerWidth <= 700
-    ? "/videos/maai-property-scroll-v4-mobile.mp4"
-    : "/videos/maai-property-scroll-v4.mp4";
   container.append(video);
+  // Lazy-load the film: the poster paints first; the clip starts downloading once
+  // the page has loaded (or on first scroll), so it never competes with first paint.
+  let sourceSet = false;
+  const attachSource = () => {
+    if (sourceSet) return;
+    sourceSet = true;
+    video.preload = "auto";
+    video.src = window.innerWidth <= 700
+      ? "/videos/maai-property-scroll-v5-mobile.mp4"
+      : "/videos/maai-property-scroll-v5.mp4";
+    video.load();
+  };
+  const idle = (cb: () => void) => ("requestIdleCallback" in window ? (window as any).requestIdleCallback(cb, { timeout: 1500 }) : setTimeout(cb, 300));
+  if (document.readyState === "complete") idle(attachSource);
+  else window.addEventListener("load", () => idle(attachSource), { once: true });
+  window.addEventListener("scroll", attachSource, { once: true, passive: true });
 
   let wantedTime = 0;
   let lastPosition = 0;
@@ -28,7 +41,7 @@ export function createVideoFlow() {
   }
   function seek() {
     frameRequest = 0;
-    if (failed || document.hidden || video.readyState < 1 || video.seeking) return;
+    if (failed || !sourceSet || document.hidden || video.readyState < 1 || video.seeking) return;
     if (Math.abs(video.currentTime - wantedTime) > frameDuration / 2) {
       // Wait for the decoder to finish before applying the newest target. This
       // coalesces fast scroll updates rather than stacking competing seeks.
@@ -59,6 +72,7 @@ export function createVideoFlow() {
     scheduleSeek();
   });
   video.addEventListener("error", () => {
+    if (!sourceSet) return;
     failed = true;
     video.classList.remove("is-ready");
     container.dataset.videoReady = "error";
