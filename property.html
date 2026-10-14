@@ -6,18 +6,22 @@
   <meta name="theme-color" content="#102b22" />
   <title>Property Guidance | MAAI Property Care</title>
   <meta name="description" content="A concise Gurugram property overview and a guided visit request from MAAI Property Care." />
+  <link rel="icon" type="image/png" href="/images/favicon-48.png" />
+  <meta property="og:site_name" content="MAAI Property Care" /><meta property="og:image" content="https://maaipropertycare.com/images/maai-og.jpg" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" />
   <link rel="stylesheet" href="/src/property.css" />
 </head>
 <body>
   <canvas id="particle-scene" aria-hidden="true"></canvas>
   <div class="property-light-rays" aria-hidden="true"></div>
   <header class="detail-header">
-    <a class="detail-brand" href="/"><img src="/images/maai-icon-transparent.png" alt="" /><span><strong>MAAI</strong> Property Care<small>Your Property, Our Responsibility</small></span></a>
+    <a class="detail-brand" href="/"><img src="/images/maai-icon.webp" alt="" /><span><strong>MAAI</strong> Property Care<small>Your Property, Our Responsibility</small></span></a>
     <nav><a href="/#spaces">All property types</a><a class="header-action" href="#visit-form">Book a Visit ↗</a></nav>
   </header>
   <main>
     <section class="detail-hero">
-      <div class="detail-orb" aria-hidden="true"><img src="/images/maai-icon-transparent.png" alt="" /></div>
+      <div class="detail-orb" aria-hidden="true"><img src="/images/maai-icon.webp" alt="" /></div>
       <div class="detail-hero-copy"><p class="detail-kicker" id="category"></p><h1 id="title"></h1><p class="detail-summary" id="summary"></p><div class="detail-actions"><a class="primary-action" href="#visit-form">Talk to book a visit <span>↗</span></a><a href="#market-note">Read the brief ↓</a></div></div>
     </section>
     <section class="detail-brief" id="market-note">
@@ -35,13 +39,14 @@
         <div class="field-pair"><label>Preferred location<input name="location" required placeholder="Sector, corridor or project" /></label><label>Budget / expected range<input name="budget" placeholder="Your comfortable range" /></label></div>
         <div class="field-pair"><label>When would you like to visit?<input name="visit" type="date" /></label><label>Your current stage<select name="stage"><option>Just exploring</option><option>Shortlisting</option><option>Ready to visit</option><option>Ready to proceed</option></select></label></div>
         <label>Key requirements<textarea name="requirements" rows="4" required placeholder="Size, use, timeline, must-haves and questions"></textarea></label>
-        <p class="privacy-note">Preview only: this prepares a brief on your device. It does not send or store your information.</p>
-        <button type="submit">Prepare visit brief <span>↗</span></button>
-        <div class="visit-result" hidden><p>Your brief is ready. Nothing has been sent.</p><pre></pre><button type="button" id="copy-visit">Copy brief</button><small role="status"></small></div>
+        <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" /><p class="privacy-note">Your request is emailed to our team and WhatsApp opens with your details ready. Or call <a href="tel:+917589490641">+91 75894 90641</a>.</p>
+        <button type="submit">Send visit request <span>↗</span></button>
+        <div class="visit-result" hidden><p role="status">Sending…</p><pre></pre><a id="visit-wa" href="https://wa.me/917589490641" target="_blank" rel="noopener">Send on WhatsApp ↗</a> <button type="button" id="copy-visit">Copy brief</button><small role="status"></small></div>
       </form>
     </section>
   </main>
-  <footer><a href="/">← Back to MAAI Property Care</a><p>Your Property, Our Responsibility.</p></footer>
+  <footer><a href="/">← Back to MAAI Property Care</a><p>Your Property, Our Responsibility.</p><p class="footer-contact-lite">Shop 1 &amp; 2, Proxima Commercial, Sector 89, Gurgaon, Haryana · <a href="tel:+917589490641">+91 75894 90641</a> · <a href="https://wa.me/917589490641" target="_blank" rel="noopener">WhatsApp</a> · Serving Gurgaon</p></footer>
+  <a href="https://wa.me/917589490641" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" style="position:fixed;z-index:20;left:18px;bottom:18px;width:54px;height:54px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:26px;box-shadow:0 10px 28px #0006;text-decoration:none">✆</a>
   <script type="module" src="/src/property.ts"></script>
 </body>
 </html>

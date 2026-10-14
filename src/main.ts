@@ -27,7 +27,7 @@ let activeChapter = -1;
 let renderLogo: (position: number, still: boolean) => void = () => {};
 let resizeLogo = () => {};
 setupEnquiry(() => {});
-initializeParticleBackground(document.querySelector<HTMLCanvasElement>("#particle-scene"));
+try { initializeParticleBackground(document.querySelector<HTMLCanvasElement>("#particle-scene")); } catch { document.querySelector<HTMLElement>("#particle-scene")?.style.setProperty("display", "none"); }
 
 function measure() {
   starts = chapters.map((chapter) => chapter.getBoundingClientRect().top + window.scrollY);
@@ -187,7 +187,7 @@ initializePremiumMotion();
 
 function initializeLogo() {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth <= 700 ? 1.5 : 1.75));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth <= 700 ? 1.25 : 1.75));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x000000, 0);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -215,7 +215,9 @@ function initializeLogo() {
   let orbitFrame = 0;
   let lastOrbitFrame = 0;
   const headingElements = chapters.map((chapter) => chapter.querySelector<HTMLElement>("h1, h2")!);
-  new GLTFLoader().load("/models/maai-logo.glb", (gltf) => {
+  // Defer the 1.6 MB logo model until the browser is idle after first paint.
+  const loadModel = (cb: () => void) => ("requestIdleCallback" in window ? (window as any).requestIdleCallback(cb, { timeout: 800 }) : setTimeout(cb, 200));
+  loadModel(() => new GLTFLoader().load("/models/maai-logo.glb", (gltf) => {
     const logo = gltf.scene;
     logo.position.sub(new THREE.Box3().setFromObject(logo).getCenter(new THREE.Vector3()));
     logo.traverse((child) => { if (child instanceof THREE.Mesh) finishLogo(child); });
@@ -224,7 +226,7 @@ function initializeLogo() {
     renderLogo(state.position, paused);
   }, undefined, () => {
     canvas.dataset.logoLoaded = "error";
-  });
+  }));
 
   renderLogo = (position, _still) => {
     const w = window.innerWidth, h = window.innerHeight;
@@ -289,7 +291,7 @@ function initializeLogo() {
     if (loaded && !document.hidden) renderer.render(scene, camera);
   };
   resizeLogo = () => {
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth <= 700 ? 1.5 : 1.75));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth <= 700 ? 1.25 : 1.75));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderLogo(state.position, paused);
   };
@@ -326,3 +328,6 @@ window.addEventListener("scroll", readScroll, { passive: true });
 window.addEventListener("resize", () => { measure(); resizeLogo(); readScroll(); });
 document.fonts.ready.then(() => { measure(); ScrollTrigger.refresh(); });
 readScroll();
+
+// Hide the branded loading screen once the first frame is ready.
+requestAnimationFrame(() => requestAnimationFrame(() => document.getElementById("site-loader")?.classList.add("is-done")));
