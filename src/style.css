@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{font-family:'DM Sans',sans-serif;color:#f8f5eb;background:#132b25;font-synthesis:none;--ivory:#f8f5eb;--gold:#dab675;--muted:#d8ddd2;--scene-progress:0;color-scheme:dark}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0}button,input,select,textarea{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer;color:inherit}a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:6px}::selection{background:#d5af70;color:#183b2c}
-.backdrop{position:fixed;inset:0;background:url('/images/maai-highrise-garden.png') center/cover;opacity:calc(1 - var(--scene-progress));z-index:0;pointer-events:none}
+.backdrop{position:fixed;inset:0;background:url('/images/maai-highrise-garden.jpg') center/cover;opacity:calc(1 - var(--scene-progress));z-index:0;pointer-events:none}
 #scene,#particle-scene{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;pointer-events:none}.scene-shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(10,29,23,.94),rgba(10,29,23,.78) 34%,rgba(10,29,23,.04) 74%),linear-gradient(0deg,rgba(10,29,23,.5),transparent 20%,transparent 80%,rgba(10,29,23,.25))}
 main{position:relative;z-index:2}.site-header{position:fixed;top:0;left:0;right:0;height:94px;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;border-bottom:1px solid #f8f5eb26;transition:background .3s;gap:22px}.site-header.scrolled{background:#122b25eb;backdrop-filter:blur(12px)}.brand{font-family:'Manrope',sans-serif;font-size:31px;font-weight:800;line-height:1;letter-spacing:-2px}.brand span{font-size:11px;vertical-align:top;color:var(--gold);margin-left:3px}.brand small{display:block;font:500 8px/1.4 'DM Sans',sans-serif;letter-spacing:2.6px;margin-top:7px}.site-header nav{display:flex;gap:34px;font-size:12px}.site-header nav a{color:#e7eadd}.site-header nav a:hover{color:var(--gold)}.header-cta{font-size:12px;padding:12px 18px;border:1px solid #f8f5eb66;border-radius:30px}.header-cta span{margin-left:24px;color:var(--gold)}
 .chapter{position:relative;min-height:110svh;display:flex;align-items:center;padding:140px 8vw 120px;scroll-margin-top:0}.hero{min-height:100svh}.chapter-copy{width:48%;max-width:620px}.eyebrow{text-transform:uppercase;letter-spacing:2.5px;font-size:10px;font-weight:600;line-height:1.8;color:var(--gold);margin:0 0 28px}.hero .eyebrow{display:flex;gap:12px;align-items:center}.eyebrow>span{width:6px;height:6px;flex-shrink:0;border-radius:50%;background:var(--gold)}h1,h2{font-family:'Manrope',sans-serif;font-weight:500;font-size:clamp(40px,4.6vw,72px);line-height:1.08;letter-spacing:-3px;margin:0 0 26px}h1 em,h2 em{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-2px;color:#e5c990;display:inline-block;margin-top:6px}h1{font-size:clamp(48px,5.4vw,85px)}h1 em{font-size:.88em}p{font-size:15px;line-height:1.8;color:var(--muted);margin:0}.chapter-copy>p:not(.eyebrow){max-width:390px}.intro{font-size:16px;max-width:350px!important}.actions{display:flex;flex-wrap:wrap;align-items:center;gap:26px;margin-top:32px}.button{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;background:var(--ivory);color:#153529;border:1px solid transparent;border-radius:40px;padding:17px 23px;font-size:12px;font-weight:600;line-height:1.4;transition:background .2s,transform .2s}.button:hover{background:#e8cf9f;transform:translateY(-2px)}.button>span{font-size:19px;line-height:1}.text-link{display:inline-flex;align-items:center;gap:22px;background:none;border:0;border-bottom:1px solid #f8f5eb50;padding:8px 0;font-size:12px;font-weight:500;line-height:1.5}.text-link:hover{color:var(--gold);border-color:var(--gold)}.text-link span{color:var(--gold);font-size:19px}.hero-values{display:flex;gap:15px;flex-wrap:wrap;margin-top:44px;color:#c0cbbf;font-size:9px;text-transform:uppercase;letter-spacing:1px}.hero-values span+span:before{content:'·';margin-right:15px;color:var(--gold)}.scroll-hint{position:absolute;bottom:92px;left:8vw;display:flex;align-items:center;gap:14px;text-transform:uppercase;font-size:9px;letter-spacing:2px;color:#dedfd2}.scroll-line{display:block;width:36px;height:1px;background:var(--gold)}
@@ -16,7 +15,7 @@ footer{position:relative;z-index:2;background:#122b25;padding:46px 8vw;display:g
 
 /* Photographic flow: imagery, contrast veil and real 3D logo are separate layers. */
 :root{--copy-right:0}
-.backdrop{overflow:hidden;opacity:1;background:#172c24 url('/images/maai-highrise-garden.png') center/cover;transition:opacity .55s}
+.backdrop{overflow:hidden;opacity:1;background:#172c24 url('/images/maai-highrise-garden.jpg') center/cover;transition:opacity .55s}
 .photo-frame{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;visibility:hidden;will-change:transform,opacity;transform-origin:center;pointer-events:none}
 .scene-shade{background:none}
 .scene-shade:before,.scene-shade:after{content:'';position:absolute;inset:0;pointer-events:none}
@@ -149,3 +148,74 @@ footer{z-index:3}
 @keyframes ambient-rays{0%{transform:rotate(-3deg) translate3d(-2vw,-1vh,0) scale(.96);opacity:.45}100%{transform:rotate(2deg) translate3d(4vw,3vh,0) scale(1.06);opacity:.9}}
 @media(max-width:700px){.ambient-motion:before{animation-duration:22s}.ambient-orb-one{width:64vw;height:64vw;left:-30vw}.ambient-orb-two{width:76vw;height:76vw;right:-41vw}.ambient-orb-three{display:none}}
 @media(prefers-reduced-motion:reduce){.ambient-motion{display:none}}
+
+/* ---- 2026-10 improvements: layout fixes, readability, contact, loader ---- */
+/* Fixed layers are sized to the LARGE viewport so no strip of page colour shows
+   when mobile browser bars collapse; the header is pinned with no gap above it. */
+html{background:#0a1d17;overscroll-behavior-y:none;scroll-padding-top:104px}
+body{background:transparent;min-height:100%}
+.backdrop,#scene,#particle-scene,.scene-shade,.ambient-motion{top:0;left:0;right:0;bottom:auto;width:100%;height:100vh;height:100lvh}
+.site-header{top:0;margin:0;transform:translate3d(0,0,0);will-change:auto}
+.site-header.scrolled{background:#0f2620f0;box-shadow:0 8px 28px #0004}
+.hero{min-height:100vh;min-height:100lvh}
+.video-frame,.backdrop{background-size:cover;background-position:center}
+.video-frame{width:100%;height:100%;object-fit:cover}
+
+/* Readability: larger, higher-contrast small text */
+:root{--muted:#e6eadf}
+p{color:var(--muted)}
+.service-description{font-size:12.5px;color:#eef1e8}
+.space-grid a>span:last-child{font-size:12.5px;color:#eef1e8}
+.space-grid a .property-icon{font-size:10px}
+.consultancy-points li,.care-grid li,.principles li{font-size:14px;color:#f3f4ee}
+.process-list p{font-size:13.5px;color:#e3e8dd}
+.fine-print{font-size:12px!important;color:#d9e1d6}
+.eyebrow{font-size:11px}
+.contact-copy p,.faq-list details p{color:#41503f}
+.form-heading p,.form-notice{font-size:12.5px;color:#4a5547}
+.consultation-form label{font-size:12.5px;color:#1d3a2c}
+input::placeholder,textarea::placeholder{color:#5e6a5c}
+.questionnaire-disclaimer{font-size:11.5px;color:#4d5b4e}
+.questionnaire-grid label,.questionnaire-notes{font-size:12px}
+.questionnaire-intro p{font-size:13.5px;color:#e1e8e1}
+footer>small{font-size:11.5px;color:#cbd6c9}
+.brand .brand-words small{font-size:7.5px;color:#e6ebe1}
+@media(max-width:700px){.service-description{font-size:11px;color:#f1f3ec}.space-grid a>span:last-child{font-size:11.5px}.care-grid li,.consultancy-points li{font-size:13px}.intro,.chapter-copy>p{font-size:14.5px}}
+
+/* Contact details, map, footer */
+.contact-details{display:grid;gap:12px;margin-top:34px;max-width:420px}
+.contact-line{display:flex;gap:14px;align-items:center;padding:13px 16px;border:1px solid #183c3026;border-radius:14px;background:#fffdf7cc;transition:border-color .2s,transform .2s}
+.contact-line:hover{border-color:#947b48;transform:translateY(-2px)}
+.contact-line>span:first-child{display:grid;place-items:center;flex-shrink:0;width:38px;height:38px;border-radius:50%;background:#204534;color:#f1d39a;font-size:17px}
+.contact-line small{display:block;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#7a6438}
+.contact-line strong{display:block;font-size:15px;font-weight:700;line-height:1.4;color:#183c30}
+.service-area{font-size:13.5px!important;color:#2f4a3a!important}
+.map-embed{margin-top:18px;max-width:420px;border-radius:16px;overflow:hidden;border:1px solid #183c3026;aspect-ratio:16/10;background:#e3e4d9}
+.map-embed iframe{display:block;width:100%;height:100%;border:0}
+.hp-field{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.brief-result #send-status{font-weight:700;color:#204534;font-size:13.5px}
+.brief-result .text-link{margin-right:18px}
+.footer-contact{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px 30px;font-style:normal;font-size:13.5px;color:#e6ebe1;border-top:1px solid #f8f5eb20;padding-top:22px}
+.footer-contact b{display:block;font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:#dab675;font-weight:700;margin-bottom:3px}
+.footer-contact a{color:#f8f5eb;text-decoration:underline;text-underline-offset:3px;text-decoration-color:#dab67588}
+.footer-contact a:hover{color:#dab675}
+
+/* Floating WhatsApp button (stays visible all page long) */
+.floating-whatsapp{position:fixed;z-index:11;left:24px;bottom:24px;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#25d366;color:#fff;box-shadow:0 12px 32px #0007;transition:transform .2s}
+.floating-whatsapp:hover{transform:scale(1.07)}
+@media(max-width:700px){.floating-whatsapp{left:16px;bottom:16px;width:52px;height:52px}.footer-contact{flex-direction:column;font-size:13px}.contact-details,.map-embed{max-width:none}}
+
+/* Light branded loading screen */
+.site-loader{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:radial-gradient(circle at 50% 42%,#1d4334,#0b211a 70%);transition:opacity .6s ease,visibility .6s}
+.site-loader.is-done{opacity:0;visibility:hidden;pointer-events:none}
+.site-loader-mark{display:grid;justify-items:center;gap:14px;color:#e3be72;font:500 15px 'Manrope',sans-serif;letter-spacing:.4px}
+.site-loader-mark img{width:96px;height:96px;animation:loader-breathe 1.8s ease-in-out infinite}
+.site-loader-mark strong{color:#f8f5eb;letter-spacing:1.5px}
+.site-loader-mark i{display:block;width:120px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#dab675,transparent);background-size:200% 100%;animation:loader-bar 1.2s linear infinite}
+@keyframes loader-breathe{50%{transform:scale(1.06);opacity:.85}}
+@keyframes loader-bar{from{background-position:200% 0}to{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){.site-loader-mark img,.site-loader-mark i{animation:none}}
+/* Bug fix: a later `.floating-talk{position:relative}` rule pulled the CTA into the
+   document flow, adding a dark strip at the page end. Pin it again. */
+body .floating-talk{position:fixed;left:auto}
+@media(max-width:700px){.floating-whatsapp{left:auto;right:18px;bottom:78px}}

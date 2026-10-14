@@ -1,3 +1,4 @@
+import { sendEnquiry, briefLines, whatsappUrl } from "./send-enquiry";
 import { initializeParticleBackground } from "./particle-background";
 
 initializeParticleBackground(document.querySelector<HTMLCanvasElement>("#particle-scene"));
@@ -108,12 +109,15 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   if (!form.reportValidity()) return;
   const data = new FormData(form);
-  const lines = ["MAAI — Visit & consultation brief", `Category: ${page.category}`, ""];
-  for (const [name, raw] of data.entries()) {
-    const value = String(raw).trim();
-    if (value) lines.push(`${name.replace(/^./, (letter) => letter.toUpperCase())}: ${value}`);
-  }
-  pre.textContent = lines.join("\n"); result.hidden = false; statusElement.textContent = ""; result.scrollIntoView({ block: "nearest" });
+  const lines = briefLines("MAAI — Visit & consultation request", data);
+  lines.splice(1, 0, `Category: ${page.category}`);
+  const text = lines.join("\n");
+  const msg = result.querySelector<HTMLElement>("p")!;
+  result.querySelector<HTMLAnchorElement>("#visit-wa")!.href = whatsappUrl(text);
+  pre.textContent = text; result.hidden = false; statusElement.textContent = ""; msg.textContent = "Sending…"; result.scrollIntoView({ block: "nearest" });
+  sendEnquiry(`Visit request: ${page.category}`, text, data).then((ok) => {
+    msg.textContent = ok ? "Thank you. Your request has been emailed to our team. Please also tap Send in WhatsApp." : "Email could not be sent right now. Please send it on WhatsApp or call +91 75894 90641.";
+  });
 });
 document.querySelector<HTMLButtonElement>("#copy-visit")!.addEventListener("click", async () => {
   try { await navigator.clipboard.writeText(pre.textContent ?? ""); statusElement.textContent = "Copied."; }

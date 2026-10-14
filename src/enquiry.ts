@@ -1,3 +1,4 @@
+import { sendEnquiry, briefLines, whatsappUrl } from "./send-enquiry";
 type Question = {
   name: string;
   label: string;
@@ -73,7 +74,7 @@ function installQuestionnaire(serviceSelect: HTMLSelectElement, resultToHide: HT
   dialog.innerHTML = `
     <div class="questionnaire-shell">
       <button class="questionnaire-close" type="button" aria-label="Close questionnaire">×</button>
-      <div class="questionnaire-intro"><img src="/images/maai-icon-transparent.png" alt="" /><div><span>MAAI guided consultation</span><h2>Let’s understand<br /><em>what you need.</em></h2><p>Answer the questions that apply to you. Your responses stay on this device in this preview.</p></div></div>
+      <div class="questionnaire-intro"><img src="/images/maai-icon.webp" alt="" width="145" height="145" /><div><span>MAAI guided consultation</span><h2>Let’s understand<br /><em>what you need.</em></h2><p>Answer the questions that apply to you. Your answers are sent to our team by email and WhatsApp so we can call you back prepared.</p></div></div>
       <form id="questionnaire-form">
         <div class="questionnaire-progress"><span>01</span><div></div><span>Your requirement</span></div>
         <div class="questionnaire-grid questionnaire-personal">
@@ -83,9 +84,9 @@ function installQuestionnaire(serviceSelect: HTMLSelectElement, resultToHide: HT
         </div>
         <div class="questionnaire-grid" id="service-questions"></div>
         <label class="questionnaire-notes">Anything else we should know?<textarea name="notes" rows="3" placeholder="Timeline, family needs, accessibility, investment objective or any concern"></textarea></label>
-        <p class="questionnaire-disclaimer">Preview only: this prepares a consultation brief; it does not send or store your information.</p>
-        <button class="button dark-button" type="submit">Prepare my requirement brief <span aria-hidden="true">↗</span></button>
-        <div class="questionnaire-result" hidden><p role="status">Your guided brief is ready. Nothing has been sent.</p><pre></pre><button type="button" class="guided-copy">Copy brief</button><small role="status"></small></div>
+        <p class="questionnaire-disclaimer">Prefer to talk now? Call or WhatsApp <a href="tel:+917589490641">+91 75894 90641</a>.</p><input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <button class="button dark-button" type="submit">Send my requirements <span aria-hidden="true">↗</span></button>
+        <div class="questionnaire-result" hidden><p role="status" class="q-status">Sending…</p><pre></pre><a class="guided-copy q-wa" target="_blank" rel="noopener" href="https://wa.me/917589490641">Send on WhatsApp</a> <button type="button" class="guided-copy">Copy brief</button><small role="status"></small></div>
       </form>
     </div>`;
   document.body.append(dialog);
@@ -123,13 +124,14 @@ function installQuestionnaire(serviceSelect: HTMLSelectElement, resultToHide: HT
     event.preventDefault();
     if (!form.reportValidity()) return;
     const data = new FormData(form);
-    const lines = ["MAAI — Guided consultation brief", ""];
-    for (const [key, raw] of data.entries()) {
-      const value = String(raw).trim();
-      if (value) lines.push(`${key.replace(/_/g, " ").replace(/^./, (letter: string) => letter.toUpperCase())}: ${value}`);
-    }
-    pre.textContent = lines.join("\n"); status.textContent = ""; output.hidden = false;
+    const text = briefLines("MAAI — Guided consultation enquiry", data).join("\n");
+    const qStatus = output.querySelector<HTMLElement>(".q-status")!;
+    output.querySelector<HTMLAnchorElement>(".q-wa")!.href = whatsappUrl(text);
+    pre.textContent = text; status.textContent = ""; output.hidden = false; qStatus.textContent = "Sending…";
     output.scrollIntoView({ block: "nearest" });
+    sendEnquiry(`Guided enquiry: ${String(data.get("service") ?? "")}`, text, data).then((ok) => {
+      qStatus.textContent = ok ? "Thank you. Your enquiry has been emailed to our team. Please also tap Send in WhatsApp." : "Email could not be sent right now. Please send it on WhatsApp or call +91 75894 90641.";
+    });
   });
   output.querySelector<HTMLButtonElement>(".guided-copy")!.addEventListener("click", async () => {
     try { await navigator.clipboard.writeText(pre.textContent ?? ""); status.textContent = "Copied."; }
@@ -156,22 +158,34 @@ export function setupEnquiry(onPropertyChange: (name: string) => void) {
 
   installQuestionnaire(service, result);
   property.addEventListener("change", () => { onPropertyChange(property.value); result.hidden = true; });
-  form.addEventListener("input", () => { result.hidden = true; validate(); });
+  form.addEventListener("input", () => validate());
   form.addEventListener("submit", (event) => {
     event.preventDefault(); validate();
     if (!form.reportValidity()) return;
     const data = new FormData(form);
     const value = (name: string) => String(data.get(name) ?? "").trim();
-    brief.textContent = [
-      "MAAI — Consultation brief", "", `Name: ${value("name")}`, `Contact: ${value("contact")}`,
+    const text = [
+      "MAAI — Website enquiry", "", `Name: ${value("name")}`, `Contact: ${value("contact")}`,
       `Service: ${value("service")}`, `Property type: ${value("property") || "To discuss"}`,
       `Location: ${value("location")}`, `Budget: ${value("budget") || "To discuss"}`,
       `Notes: ${value("message") || "None added"}`,
     ].join("\n");
+    brief.textContent = text;
+    const sendStatus = document.querySelector<HTMLElement>("#send-status")!;
+    document.querySelector<HTMLAnchorElement>("#whatsapp-brief")!.href = whatsappUrl(text);
+    const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    submit.disabled = true; sendStatus.textContent = "Sending your enquiry…";
     copyStatus.textContent = ""; result.hidden = false; result.scrollIntoView({ block: "nearest" });
+    sendEnquiry(`New website enquiry: ${value("service")} (${value("name")})`, text, data).then((ok) => {
+      submit.disabled = false;
+      sendStatus.textContent = ok
+        ? "Thank you. Your enquiry has been emailed to our team, and WhatsApp has opened with your details. Please tap Send there too."
+        : "We could not email your enquiry just now. Please send it on WhatsApp below or call +91 75894 90641.";
+      if (ok) form.reset();
+    });
   });
   document.querySelector<HTMLButtonElement>("#copy-brief")!.addEventListener("click", async () => {
-    try { await navigator.clipboard.writeText(brief.textContent ?? ""); copyStatus.textContent = "Copied. You can now paste your brief. Nothing has been sent."; }
+    try { await navigator.clipboard.writeText(brief.textContent ?? ""); copyStatus.textContent = "Copied."; }
     catch { copyStatus.textContent = "Copy is unavailable in this browser. Select and copy the brief above."; }
   });
   form.querySelector<HTMLButtonElement>('button[type="submit"]')!.disabled = false;
