@@ -1,4 +1,5 @@
 // Restores binary assets that were committed as base64 text (assets-b64/<path>.b64 → public/<path>).
+/* global Buffer, console */
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, statSync } from "node:fs";
 import { join, dirname, relative } from "node:path";
 const root = "assets-b64";
