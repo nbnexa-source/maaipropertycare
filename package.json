@@ -9,7 +9,8 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prebuild": "node scripts/decode-assets.mjs"
   },
   "dependencies": {
     "gsap": "3.12.5",
