@@ -32,4 +32,10 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
 Sitemap: https://maaipropertycare.com/sitemap.xml

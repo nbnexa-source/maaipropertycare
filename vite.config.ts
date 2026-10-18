@@ -9,6 +9,13 @@ export default defineConfig({
       input: {
         main: "index.html",
         property: "property.html",
+        blog: "blog/index.html",
+        blogSector89Checklist: "blog/buying-affordable-home-sector-89-gurgaon-checklist/index.html",
+        about: "about/index.html",
+        contact: "contact/index.html",
+        privacy: "privacy-policy/index.html",
+        terms: "terms-and-conditions/index.html",
+        disclaimer: "disclaimer/index.html",
       },
     },
   },

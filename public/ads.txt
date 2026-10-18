@@ -1,0 +1,5 @@
+# ads.txt for maaipropertycare.com
+# PLACEHOLDER: MAAI Property Care does not have a Google AdSense account yet.
+# After AdSense approval, replace pub-XXXXXXXXXXXXXXXX below with the real publisher ID
+# (Google AdSense > Account > Settings > Account information) and remove the leading "# " from the line.
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

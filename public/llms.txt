@@ -36,3 +36,12 @@
 
 ## Pages
 - [Home](https://maaipropertycare.com/): services, property types, property care, contact form, map and FAQ.
+
+## Pages
+- Blog: https://maaipropertycare.com/blog/
+- Buying an affordable home in Sector 89, Gurgaon: a simple checklist: https://maaipropertycare.com/blog/buying-affordable-home-sector-89-gurgaon-checklist/
+- About Us: https://maaipropertycare.com/about/
+- Contact Us: https://maaipropertycare.com/contact/
+- Privacy Policy: https://maaipropertycare.com/privacy-policy/
+- Terms & Conditions: https://maaipropertycare.com/terms-and-conditions/
+- Disclaimer: https://maaipropertycare.com/disclaimer/
