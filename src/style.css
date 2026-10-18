@@ -221,3 +221,9 @@ body .floating-talk{position:fixed;left:auto}
 @media(max-width:700px){.floating-whatsapp{left:auto;right:18px;bottom:78px}}
 footer .footer-links{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px 24px;font-size:13px}footer .footer-links a{color:#cbd6c9}footer .footer-links a:hover{color:var(--gold)}
 footer .footer-links,footer>small{order:1}footer>small.footer-rera{order:2;border-top:0;padding-top:0;margin-top:-18px}
+
+/* Social media icon links */
+footer .social-links{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0}
+footer .social-links a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:1px solid #dab67599;color:#dab675;background:#132b25;transition:background .2s,color .2s,border-color .2s,transform .2s}
+footer .social-links a:hover{background:#dab675;color:#132b25;border-color:#dab675;transform:translateY(-2px)}
+footer .social-links svg{display:block}

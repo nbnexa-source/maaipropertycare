@@ -165,3 +165,12 @@ p,li{font-size:16px;line-height:1.8;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 @media(max-width:760px){.brand-words small{display:none}.page-header{flex-wrap:wrap}.page-header .brand{flex:1;min-width:0}}
 @media(max-width:360px){.brand-words{font-size:13px}.header-cta span{display:none}}
+
+/* Social media icon links */
+.social-links{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;padding:0}
+.social-links a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:1px solid #dab67599;color:var(--gold);background:#132b25;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.social-links a:hover{background:var(--gold);color:#132b25;border-color:var(--gold);transform:translateY(-2px)}
+.social-links svg{display:block}
+.contact-social{margin:8px 0 28px}
+.contact-social .eyebrow{margin-bottom:4px}
+.page-footer .social-links{margin-top:18px}
