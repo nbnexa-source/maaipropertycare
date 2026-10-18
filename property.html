@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-hashes' 'sha256-vBu1G6yZWwH2aOqmBBV3fDVZZMvsX7fOk6pc5NOIHkg=' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' blob:; connect-src 'self' https://formsubmit.co data: blob:; frame-src https://www.google.com https://maps.google.com; worker-src 'self' blob:; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-hashes' 'sha256-vBu1G6yZWwH2aOqmBBV3fDVZZMvsX7fOk6pc5NOIHkg=' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://pagead2.googlesyndication.com https://adservice.google.com https://www.google.com https://tpc.googlesyndication.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' blob:; connect-src 'self' https://formsubmit.co https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://adservice.google.com https://www.google.com data: blob:; frame-src https://www.google.com https://maps.google.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://pagead2.googlesyndication.com; worker-src 'self' blob:; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <link rel="canonical" href="https://maaipropertycare.com/property.html" />
   <meta name="robots" content="noindex,follow" />
@@ -21,7 +21,7 @@
   <div class="property-light-rays" aria-hidden="true"></div>
   <header class="detail-header">
     <a class="detail-brand" href="/"><img src="/images/maai-icon.webp" alt="" width="55" height="55" /><span><strong>MAAI</strong> Property Care<small>Your Property, Our Responsibility</small></span></a>
-    <nav><a href="/#spaces">All property types</a><a class="header-action" href="#visit-form">Book a Visit ↗</a></nav>
+    <nav><a href="/#spaces">All property types</a><a href="/blog/">Blog</a><a class="header-action" href="#visit-form">Book a Visit ↗</a></nav>
   </header>
   <main>
     <section class="detail-hero">
@@ -52,5 +52,6 @@
   <footer><a href="/">← Back to MAAI Property Care</a><p>Your Property, Our Responsibility.</p><p class="footer-contact-lite">Shop 1 &amp; 2, Proxima Commercial, Sector 89, Gurgaon, Haryana · <a href="tel:+917589490641">+91 75894 90641</a> · <a href="https://wa.me/917589490641" target="_blank" rel="noopener">WhatsApp</a> · Serving Gurgaon</p></footer>
   <a href="https://wa.me/917589490641" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" style="position:fixed;z-index:20;left:18px;bottom:18px;width:54px;height:54px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:26px;box-shadow:0 10px 28px #0006;text-decoration:none">✆</a>
   <script type="module" src="/src/property.ts"></script>
+  <script type="module" src="/src/consent.ts"></script>
 </body>
 </html>
