@@ -3,6 +3,49 @@
   <url>
     <loc>https://maaipropertycare.com/</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://maaipropertycare.com/" />
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-18</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://maaipropertycare.com/blog/</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://maaipropertycare.com/blog/" />
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://maaipropertycare.com/blog/buying-affordable-home-sector-89-gurgaon-checklist/</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://maaipropertycare.com/blog/buying-affordable-home-sector-89-gurgaon-checklist/" />
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://maaipropertycare.com/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://maaipropertycare.com/about/" />
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://maaipropertycare.com/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://maaipropertycare.com/contact/" />
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://maaipropertycare.com/privacy-policy/</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://maaipropertycare.com/privacy-policy/" />
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://maaipropertycare.com/terms-and-conditions/</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://maaipropertycare.com/terms-and-conditions/" />
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://maaipropertycare.com/disclaimer/</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://maaipropertycare.com/disclaimer/" />
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.3</priority>
   </url>
 </urlset>
