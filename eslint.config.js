@@ -7,7 +7,7 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   {
     languageOptions: {
-      globals: { window: "readonly", document: "readonly", HTMLElement: "readonly" },
+      globals: { window: "readonly", document: "readonly", HTMLElement: "readonly", HTMLAnchorElement: "readonly", IntersectionObserver: "readonly", Element: "readonly" },
     },
   },
 );

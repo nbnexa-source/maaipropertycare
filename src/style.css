@@ -219,3 +219,4 @@ footer>small{font-size:11.5px;color:#cbd6c9}
    document flow, adding a dark strip at the page end. Pin it again. */
 body .floating-talk{position:fixed;left:auto}
 @media(max-width:700px){.floating-whatsapp{left:auto;right:18px;bottom:78px}}
+footer .footer-links{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px 24px;font-size:13px}footer .footer-links a{color:#cbd6c9}footer .footer-links a:hover{color:var(--gold)}
