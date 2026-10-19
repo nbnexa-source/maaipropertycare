@@ -174,3 +174,7 @@ p,li{font-size:16px;line-height:1.8;color:var(--muted)}
 .contact-social{margin:8px 0 28px}
 .contact-social .eyebrow{margin-bottom:4px}
 .page-footer .social-links{margin-top:18px}
+
+/* Buy / Rent and Sell / Give on Rent enquiry buttons */
+.enquiry-actions{display:flex;flex-wrap:wrap;gap:14px;margin:6px 0 30px}.info-body .enquiry-actions a.button{text-decoration:none;justify-content:space-between;min-height:48px}.info-body .enquiry-actions a.enquiry-buy{background:var(--gold);color:#142d24}.info-body .enquiry-actions a.enquiry-buy:hover{background:var(--gold-soft)}.info-body .enquiry-actions a.enquiry-sell{background:#204534;color:var(--ivory);border:1px solid #dab67599}.info-body .enquiry-actions a.enquiry-sell:hover{background:#325f48}.enquiry-actions .enquiry-sell span{color:var(--gold)}
+@media(max-width:700px){.enquiry-actions{flex-direction:column;align-items:stretch}}

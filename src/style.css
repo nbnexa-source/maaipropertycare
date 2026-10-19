@@ -227,3 +227,7 @@ footer .social-links{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;margi
 footer .social-links a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:1px solid #dab67599;color:#dab675;background:#132b25;transition:background .2s,color .2s,border-color .2s,transform .2s}
 footer .social-links a:hover{background:#dab675;color:#132b25;border-color:#dab675;transform:translateY(-2px)}
 footer .social-links svg{display:block}
+
+/* Buy / Rent and Sell / Give on Rent enquiry buttons */
+.enquiry-actions{gap:14px}.hero .enquiry-actions{margin-top:16px}.button.enquiry-buy{background:var(--gold);color:#142d24}.button.enquiry-buy:hover{background:#e5c990}.button.enquiry-sell{background:#204534;color:#f6f1df;border-color:#dab67599}.button.enquiry-sell:hover{background:#325f48}.button.enquiry-sell>span{color:var(--gold)}
+@media(max-width:700px){.enquiry-actions{flex-direction:column;align-items:flex-start;gap:12px}.enquiry-actions .button{min-height:48px;min-width:214px}}
