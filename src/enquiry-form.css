@@ -1,0 +1,89 @@
+/* Single enquiry form (Buy / Take on Rent / Sell / Give on Rent). Posts to the MAAI Apps Script doPost API. */
+.enq{--e-green:#dab675;--green:#dab675;--green2:#e5c990;--gold:#dab675;--goldl:#e5c990;--deep:#0f2620;--ink:#f8f5eb;--grey:#c9d0c4;
+  --line:#f8f5eb22;--err:#ff8a80;--e-card:#163029;--e-field:#0f2620;--e-bd:#f8f5eb33;--e-line:#f8f5eb1a;
+  max-width:680px;margin:0 auto 40px;color:var(--ink);font-size:15px;line-height:1.45}
+.enq .card{background:var(--e-card)!important;box-shadow:none}
+.enq .chips input:checked+span{color:var(--deep)}
+.enq .add,.enq .anybtn{background:transparent}
+.enq #sendErr{display:none;text-align:center;padding:24px 18px}
+.enq #sendErr h2{justify-content:center;color:var(--err);font-size:18px;letter-spacing:0;text-transform:none}
+.enq #sendErr p{margin:10px 0}
+.enq #sendErr .submit{margin:10px 0 18px}
+.enq h2{font-family:inherit}
+.enq .card{background:var(--e-card);border:1px solid var(--line);border-radius:16px;padding:18px 16px 6px;margin-bottom:14px;box-shadow:0 3px 10px rgba(11,51,38,.05)}
+.enq .card h2{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:6px}
+.enq .card h2 .t{flex:1;line-height:1.5}
+.enq .card h2 .n{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--deep);color:var(--goldl);display:inline-flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;letter-spacing:0;font-size:13px}
+.enq .hint{font-size:12.5px;color:var(--grey);margin:-2px 0 6px}
+.enq .f{margin:12px 0 14px}
+.enq .f>label,.enq .f .lbl{display:block;font-weight:500;font-size:14px;margin-bottom:6px}
+.enq .req{color:var(--err);font-weight:600}
+.enq .opt{color:var(--grey);font-weight:400;font-size:12.5px}
+.enq input[type=text],.enq input[type=tel],.enq input[type=email],.enq input[type=number],.enq textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--e-field);border:1.5px solid var(--e-bd);border-radius:12px;padding:12px 13px;outline:none;transition:border-color .15s,box-shadow .15s}
+.enq input:focus,.enq textarea:focus{border-color:var(--green2);box-shadow:0 0 0 3px rgba(46,109,44,.15);background:var(--e-card)}
+.enq .invalid input,.enq .invalid textarea{border-color:var(--err)}
+.enq .err-msg{display:none;color:var(--err);font-size:12.5px;margin-top:5px}
+.enq .invalid .err-msg{display:block}
+.enq .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.enq .row2 .f{margin:6px 0 10px}
+.enq .chips{display:flex;flex-wrap:wrap;gap:8px}
+.enq .chips label{position:relative;cursor:pointer}
+.enq .chips input{position:absolute;opacity:0;width:1px;height:1px}
+.enq .chips span{display:inline-block;border:1.5px solid var(--e-bd);border-radius:999px;padding:9px 14px;font-size:14px;background:var(--e-field);transition:all .15s}
+.enq .chips input:checked+span{background:var(--green);border-color:var(--green);color:var(--e-card);font-weight:500}
+.enq .chips input:focus-visible+span{box-shadow:0 0 0 3px rgba(46,109,44,.25)}
+.enq .slot{border:1px dashed var(--e-bd);border-radius:12px;padding:8px 10px 8px 12px;margin:8px 0;background:var(--e-field)}
+.enq .slot-h{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.enq .slot-h b{font-weight:500;font-size:14px}
+.enq .add{font:inherit;font-size:13px;font-weight:600;color:var(--green);background:var(--e-card);border:1.5px solid var(--green);border-radius:999px;padding:7px 13px;cursor:pointer;white-space:nowrap}
+.enq .slot input[type=file]{display:none}
+.enq .files{list-style:none;margin-top:6px}
+.enq .files li{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--grey);padding:4px 0;border-top:1px solid var(--e-line)}
+.enq .files li .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.enq .files li button{border:0;background:none;color:var(--err);font-size:18px;line-height:1;cursor:pointer;padding:0 4px}
+.enq .slot.video{border-color:var(--gold);background:rgba(218,182,117,.08)}
+.enq .note{font-size:12.5px;color:var(--grey);margin:8px 0 12px}
+.enq .warn{display:none;background:rgba(255,120,110,.12);color:var(--err);border-radius:10px;padding:9px 12px;font-size:13px;margin:8px 0}
+.enq .consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:14px 0 16px;cursor:pointer}
+.enq .consent input{width:20px;height:20px;margin-top:1px;accent-color:var(--green);flex:0 0 auto}
+.enq .submit{width:100%;font:inherit;font-weight:600;font-size:17px;color:var(--deep);background:linear-gradient(180deg,#D7A443,var(--gold));border:0;border-radius:14px;padding:15px;cursor:pointer;box-shadow:0 6px 16px rgba(201,148,49,.35)}
+.enq .submit:disabled{opacity:.6;cursor:wait}
+.enq .formerr{display:none;color:var(--err);font-size:13.5px;margin:10px 0 0;text-align:center}
+.enq .privacy{font-size:12px;color:var(--grey);text-align:center;margin:12px 0 4px}
+.enq .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.enq #progress{display:none;text-align:center;padding:26px 18px}
+.enq #progress h2{font-family:'Playfair Display',serif;color:var(--green);font-size:22px;letter-spacing:0;text-transform:none;justify-content:center}
+.enq .bar{height:12px;background:var(--e-line);border-radius:999px;overflow:hidden;margin:16px 0 8px}
+.enq .bar div{height:100%;width:0;background:linear-gradient(90deg,var(--green2),var(--gold));transition:width .25s}
+.enq #progText{font-size:13px;color:var(--grey)}
+.enq #thanks{display:none;text-align:center;padding:30px 20px 24px}
+.enq .tick{width:64px;height:64px;border-radius:50%;background:var(--deep);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;border:3px solid var(--gold)}
+.enq .tick svg{width:32px;height:32px;fill:var(--goldl)}
+.enq #thanks h2{font-family:'Playfair Display',serif;color:var(--green);font-size:26px;text-transform:none;letter-spacing:0;justify-content:center;margin-bottom:8px}
+.enq #thanks p.msg{font-size:15.5px;line-height:1.6;color:var(--ink)}
+.enq #thanks .ref{font-size:12.5px;color:var(--grey);margin-top:12px}
+.enq #verify{display:none;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.enq #verify .vline{font-size:14px;line-height:1.5;color:var(--ink);margin-bottom:12px}
+.enq .vbtn{display:block;width:100%;text-decoration:none;font-weight:600;font-size:17px;color:var(--e-card);background:linear-gradient(180deg,var(--green2),var(--green));border:2px solid var(--gold);border-radius:14px;padding:14px 12px;box-shadow:0 6px 16px rgba(33,93,35,.3)}
+.enq .vbtn:active{transform:translateY(1px)}
+.enq #verify .vnote{font-size:12.5px;color:var(--grey);margin-top:8px}
+.enq #failNote{display:none;font-size:12.5px;color:var(--err);margin-top:10px}
+@media (max-width:360px){.enq .row2{grid-template-columns:1fr}}
+.enq .only{display:none}
+.enq .reqline{font-size:13px;color:var(--grey);text-align:center;margin:2px 0 14px}
+.enq .reqline .req{font-size:14px}
+.enq .bigup{width:100%;font:inherit;font-weight:600;font-size:16px;color:var(--deep);background:linear-gradient(180deg,#D7A443,var(--gold));border:0;border-radius:14px;padding:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 6px 16px rgba(201,148,49,.3)}
+.enq .bigup svg{width:22px;height:22px;fill:var(--deep)}
+.enq .general{border:1.5px solid var(--gold);background:rgba(218,182,117,.08);border-radius:14px;padding:12px;margin:6px 0 12px}
+.enq .general .note{margin:8px 2px 2px;text-align:center}
+.enq details.rooms{border:1px solid var(--line);border-radius:12px;margin:4px 0 12px;background:var(--e-card)}
+.enq details.rooms summary{cursor:pointer;list-style:none;padding:12px 40px 12px 14px;font-size:14px;font-weight:500;color:var(--green);position:relative}
+.enq details.rooms summary::-webkit-details-marker{display:none}
+.enq details.rooms summary:after{content:"+";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--gold);font-weight:600}
+.enq details.rooms[open] summary:after{content:"\2212"}
+.enq details.rooms .inner{padding:0 10px 6px}
+.enq .areaRow{display:flex;gap:8px}
+.enq .areaRow input{flex:1;min-width:0}
+.enq .areaRow select{flex:0 0 96px;font:inherit;font-size:16px;color:var(--ink);background:var(--e-field);border:1.5px solid var(--e-bd);border-radius:12px;padding:0 10px;outline:none}
+.enq .areaRow select:focus{border-color:var(--green2);box-shadow:0 0 0 3px rgba(46,109,44,.15)}
+.enq .anybtn{font:inherit;font-size:12.5px;font-weight:600;color:var(--green);background:var(--e-card);border:1.5px solid var(--green);border-radius:999px;padding:4px 11px;margin-left:8px;cursor:pointer;vertical-align:middle}
