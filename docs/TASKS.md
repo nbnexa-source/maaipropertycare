@@ -19,9 +19,10 @@
 ## Next ideas
 - [ ] More posts (renting, resale, property care for NRIs) - each needs original content and images
 
-## In progress — Listing pages (Website Designer, 23 Oct 2026)
-- [ ] `/sale/` — Homes for sale in Gurgaon (4 project cards, no invented prices/RERA on cards)
-- [ ] `/rent/` — Homes for rent in Gurgaon (same 4; soft “Ask about rentals” where needed)
-- [ ] `/plots/` — Stub intro + contact/WhatsApp CTA (no fake listings)
-- [ ] Wire nav on home (For Sale / For Rent), Plots space card → `/plots/`, vite inputs, sitemap
+## Done — Listing pages (Website Designer, 23 Oct 2026)
+- [x] `/sale/` — Homes for sale in Gurgaon (4 project cards, no invented prices/RERA on cards)
+- [x] `/rent/` — Homes for rent in Gurgaon (same 4; soft “Ask about rentals” where needed)
+- [x] `/plots/` — Stub intro + contact/WhatsApp CTA (no fake listings)
+- [x] Wire nav on home (For Sale / For Rent), Plots space card → `/plots/`, vite inputs, sitemap
+- [x] Society photo cards on sale/rent (official / marketing exteriors + credit overlay; tags stay in body)
 - Fact sources: `verified-project-cards.md`, Proxima / AVL 36 / Golf Greens-79 sheets. Basic fields only.
