@@ -48,4 +48,22 @@
     <lastmod>2026-10-18</lastmod>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://maaipropertycare.com/sale/</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://maaipropertycare.com/sale/" />
+    <lastmod>2026-10-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://maaipropertycare.com/rent/</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://maaipropertycare.com/rent/" />
+    <lastmod>2026-10-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://maaipropertycare.com/plots/</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://maaipropertycare.com/plots/" />
+    <lastmod>2026-10-23</lastmod>
+    <priority>0.7</priority>
+  </url>
 </urlset>
