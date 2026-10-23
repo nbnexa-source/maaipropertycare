@@ -9,3 +9,8 @@
 - AdSense: no publisher ID yet. `public/ads.txt` has a commented placeholder line; AdSense script is a commented block in the `<head>` of blog pages, and an in-article unit is commented inside the demo post.
 - CSP updated on all pages for AdSense domains; existing inline-script hashes unchanged and still valid.
 - robots.txt: added explicit Allow for Mediapartners-Google and AdsBot-Google.
+
+## 2026-10-23 - Our Team + Ravinder Saini
+- Added `/team/` listing and `/team/ravinder-saini/` shareable profile.
+- Public cards show Area Gurgaon, experience, languages; business line +91 75894 90641; no project field; no personal mobile.
+- Photo from MAAI Staff Uploads Drive file 1g5R0uFDlsZqIalJfA2bmy2hyUYvP8yqP (hosted under public/images/team via assets-b64).
