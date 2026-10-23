@@ -212,3 +212,62 @@ p,li{font-size:16px;line-height:1.8;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){
   .listing-media img,.listing-card:hover .listing-media img{transition:none;transform:none}
 }
+
+/* Our Team listing */
+.team-section{padding:10px 0 90px}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px;margin:8px 0 28px}
+.team-card{border:1px solid var(--line);border-radius:24px;overflow:hidden;background:linear-gradient(180deg,#183a30cc,#10271fcc);box-shadow:0 20px 50px #0003;transition:transform .35s ease,border-color .35s,box-shadow .35s}
+.team-card:hover{transform:translateY(-6px);border-color:#dab67588;box-shadow:0 30px 60px #0005}
+.team-card-link{display:flex;flex-direction:column;color:inherit;text-decoration:none;height:100%}
+.team-photo{aspect-ratio:1;overflow:hidden;background:#0f2620}
+.team-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.team-card:hover .team-photo img{transform:scale(1.04)}
+.team-card-body{padding:22px 22px 26px;display:flex;flex-direction:column;gap:8px;flex:1}
+.team-card-body h2{font-size:22px;line-height:1.25;letter-spacing:-.4px;margin:0;color:var(--ivory)}
+.team-role{margin:0;font-size:14.5px;color:var(--gold-soft);font-weight:600}
+.team-facts{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.team-facts li{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:8px 12px;border-radius:12px;background:#0a1a1688;border:1px solid #ffffff10}
+.team-facts span{color:#b9c7b9;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+.team-facts strong{color:var(--ivory);font-weight:600;text-align:right}
+.team-more{margin-top:auto;padding-top:14px;font-size:13px;font-weight:700;color:var(--gold)}
+.team-note{font-size:14px;color:#b9c7b9;max-width:720px;margin:8px 0 0}
+.team-note a{color:var(--gold)}
+.reveal-ready .team-grid [data-reveal]:nth-child(2){transition-delay:.08s}
+.reveal-ready .team-grid [data-reveal]:nth-child(3){transition-delay:.16s}
+@media (max-width:720px){.team-grid{grid-template-columns:1fr}}
+
+/* Staff shareable profile card */
+.profile-main{padding-bottom:40px}
+.profile-main .breadcrumbs{padding-top:28px;margin-bottom:8px}
+.staff-profile-card{width:min(540px,92vw);margin:18px auto 28px;background:#FBF7EC;color:#1E2A20;border-radius:22px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35);display:flex;flex-direction:column}
+.spc-top{background:#fff;padding:12px 24px 8px;text-align:center;border-bottom:3px solid #C99431;position:relative}
+.spc-top img{width:170px;height:auto;display:block;margin:0 auto}
+.spc-label{position:absolute;top:16px;left:18px;font-size:10.5px;font-weight:600;letter-spacing:.16em;color:#215D23;text-transform:uppercase}
+.spc-body{padding:16px 30px 14px;text-align:center;flex:1}
+.spc-avatar{width:116px;height:116px;border-radius:50%;margin:0 auto 10px;border:4px solid #C99431;background:#E4E7E2;overflow:hidden}
+.spc-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.staff-profile-card h1{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:30px;line-height:1.15;color:#215D23;margin:0;overflow-wrap:anywhere}
+.spc-role{font-weight:500;font-size:14.5px;color:#1E2A20;margin:3px 0 0;letter-spacing:.02em}
+.spc-rule{width:56px;height:3px;background:#C99431;border-radius:2px;margin:10px auto 12px}
+.spc-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.spc-fact{background:#fff;border:1px solid #E6DFC9;border-radius:14px;padding:10px 6px}
+.spc-k{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5F5F5F}
+.spc-v{display:block;font-size:14px;font-weight:600;color:#1E2A20;margin-top:1px;overflow-wrap:anywhere}
+.spc-cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.spc-btn{display:flex;align-items:center;justify-content:center;text-decoration:none;font-weight:600;font-size:14.5px;border-radius:12px;padding:12px 8px}
+.spc-wa{background:#C99431;color:#0B3326}
+.spc-call{background:#215D23;color:#fff}
+.spc-office{margin-top:10px;font-size:12px;line-height:1.5;color:#5F5F5F}
+.spc-office b{color:#1E2A20;font-weight:600}
+.spc-foot{background:#0B3326;color:#fff;text-align:center;padding:11px 18px 12px;font-size:10.5px;line-height:1.55}
+.spc-foot a{color:#DAAC4F;text-decoration:none;font-weight:600}
+.spc-sep{color:#DAAC4F;padding:0 4px}
+.profile-back{text-align:center;margin:0 auto 40px;font-size:14px}
+.profile-back a{color:var(--gold);font-weight:600}
+@media (max-width:480px){
+  .spc-sep{display:none}
+  .spc-foot span,.spc-foot a{display:block}
+  .spc-foot{overflow-wrap:anywhere}
+  .spc-v{font-size:13px}
+  .staff-profile-card h1{font-size:26px}
+}
