@@ -175,6 +175,30 @@ p,li{font-size:16px;line-height:1.8;color:var(--muted)}
 .contact-social .eyebrow{margin-bottom:4px}
 .page-footer .social-links{margin-top:18px}
 
-/* Buy / Rent and Sell / Give on Rent enquiry buttons */
-.enquiry-actions{display:flex;flex-wrap:wrap;gap:14px;margin:6px 0 30px}.info-body .enquiry-actions a.button{text-decoration:none;justify-content:space-between;min-height:48px}.info-body .enquiry-actions a.enquiry-buy{background:var(--gold);color:#142d24}.info-body .enquiry-actions a.enquiry-buy:hover{background:var(--gold-soft)}.info-body .enquiry-actions a.enquiry-sell{background:#204534;color:var(--ivory);border:1px solid #dab67599}.info-body .enquiry-actions a.enquiry-sell:hover{background:#325f48}.enquiry-actions .enquiry-sell span{color:var(--gold)}
-@media(max-width:700px){.enquiry-actions{flex-direction:column;align-items:stretch}.info-body .enquiry-actions{padding-right:62px}}
+/* Property listing cards (sale / rent) */
+.listing-section{padding:10px 0 90px}
+.info-hero .lead{font-size:18px;max-width:640px;color:var(--muted);margin:0}
+.listing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;margin:8px 0 28px}
+.listing-card{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:24px;padding:26px 24px 28px;background:linear-gradient(180deg,#183a30cc,#10271fcc);box-shadow:0 20px 50px #0003;transition:transform .35s ease,border-color .35s,box-shadow .35s}
+.listing-card:hover{transform:translateY(-6px);border-color:#dab67588;box-shadow:0 30px 60px #0005}
+.listing-tags{display:flex;flex-wrap:wrap;gap:8px}
+.listing-card h2{font-size:22px;line-height:1.25;letter-spacing:-.4px;margin:4px 0 0}
+.listing-loc{margin:0;font-size:14.5px;color:#b9c7b9}
+.listing-bhk{margin:0;font-size:15px;color:var(--ivory);font-weight:600}
+.listing-soft{margin:0;font-size:14px;color:var(--gold-soft)}
+.listing-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;padding-top:14px}
+.listing-actions .button{padding:12px 18px;font-size:12.5px;gap:12px}
+.listing-note{font-size:13.5px;color:#b9c7b9;max-width:720px;margin:8px 0 22px}
+.listing-note a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+.listing-cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:8px 0 18px}
+.listing-office{font-size:14px;color:#b9c7b9;margin:0}
+.listing-office a{color:var(--gold)}
+.listing-stub{padding-bottom:90px}
+.listing-stub p{max-width:640px}
+.reveal-ready .listing-grid [data-reveal]:nth-child(2){transition-delay:.08s}
+.reveal-ready .listing-grid [data-reveal]:nth-child(3){transition-delay:.16s}
+.reveal-ready .listing-grid [data-reveal]:nth-child(4){transition-delay:.24s}
+@media(max-width:760px){
+  .listing-grid{grid-template-columns:1fr}
+  .info-hero .lead{font-size:16px}
+}
