@@ -59,7 +59,7 @@ function readScroll() {
   document.body.classList.toggle("past-journey", formAtTop);
   document.body.classList.toggle("form-at-top", formAtTop);
   document.body.classList.toggle("closing-active", chapter === 7);
-  document.querySelector(".site-header")!.classList.toggle("scrolled", y > 60);
+  document.querySelector(".mpc-header")?.classList.toggle("scrolled", y > 60);
   if (paused) {
     // With motion disabled, imagery and logo change discretely with the chapter.
     // No sweeping across the viewport, and no logo sitting on alternating copy.
