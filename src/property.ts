@@ -1,3 +1,4 @@
+import "./site-header";
 import { sendEnquiry, briefLines, whatsappUrl } from "./send-enquiry";
 import { initializeParticleBackground } from "./particle-background";
 
