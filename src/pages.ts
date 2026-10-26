@@ -1,7 +1,8 @@
+import "./site-header";
 // Light script for blog and information pages: no 3D, only gentle reveals.
 import "./consent";
 
-const header = document.querySelector(".page-header");
+const header = document.querySelector(".mpc-header");
 const onScroll = () => header?.classList.toggle("scrolled", window.scrollY > 12);
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
