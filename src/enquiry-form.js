@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { relayLead } from "./send-enquiry";
 // Single MAAI enquiry form. Same fields and payload as the old Apps Script Buyer/Seller forms,
 // sent in the background to the merged Apps Script doPost (Master Leads sheet, L-#### IDs, lead folders).
 const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwC2nCU6VZld6zKUeYpvVJsWUrgIk-m6HPu7MqkJsCdFajxNKtvoXkvZNlqAR48w4weRw/exec';   // merged Apps Script /exec URL
@@ -230,6 +231,12 @@ async function onSubmit(e) {
     balconies: val('balconies'), balconyArea: val('balconyArea'), details: val('details'), bestTime: radio('bestTime'),
     consent: $('consent').checked
   };
+  // website is the honeypot. Apps Script still receives it; the relay does not.
+  if (!($('website') && $('website').value)) {
+    var relayFields = {};
+    Object.keys(d).forEach(function (k) { if (k !== 'website') relayFields[k] = d[k]; });
+    relayLead('f', relayFields);
+  }
   var res;
   try { res = await run('submitEnquiry', d); }
   catch (err) {

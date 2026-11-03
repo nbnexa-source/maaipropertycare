@@ -116,7 +116,7 @@ form.addEventListener("submit", (event) => {
   const msg = result.querySelector<HTMLElement>("p")!;
   result.querySelector<HTMLAnchorElement>("#visit-wa")!.href = whatsappUrl(text);
   pre.textContent = text; result.hidden = false; statusElement.textContent = ""; msg.textContent = "Sending…"; result.scrollIntoView({ block: "nearest" });
-  sendEnquiry(`Visit request: ${page.category}`, text, data).then((ok) => {
+  sendEnquiry(`Visit request: ${page.category}`, text, data, "visit-request").then((ok) => {
     msg.textContent = ok ? "Thank you. Your request has been emailed to our team. Please also tap Send in WhatsApp." : "Email could not be sent right now. Please send it on WhatsApp or call +91 75894 90641.";
   });
 });

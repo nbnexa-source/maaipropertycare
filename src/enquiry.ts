@@ -129,7 +129,7 @@ function installQuestionnaire(serviceSelect: HTMLSelectElement, resultToHide: HT
     output.querySelector<HTMLAnchorElement>(".q-wa")!.href = whatsappUrl(text);
     pre.textContent = text; status.textContent = ""; output.hidden = false; qStatus.textContent = "Sending…";
     output.scrollIntoView({ block: "nearest" });
-    sendEnquiry(`Guided enquiry: ${String(data.get("service") ?? "")}`, text, data).then((ok) => {
+    sendEnquiry(`Guided enquiry: ${String(data.get("service") ?? "")}`, text, data, "questionnaire-form").then((ok) => {
       qStatus.textContent = ok ? "Thank you. Your enquiry has been emailed to our team. Please also tap Send in WhatsApp." : "Email could not be sent right now. Please send it on WhatsApp or call +91 75894 90641.";
     });
   });
@@ -176,7 +176,7 @@ export function setupEnquiry(onPropertyChange: (name: string) => void) {
     const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     submit.disabled = true; sendStatus.textContent = "Sending your enquiry…";
     copyStatus.textContent = ""; result.hidden = false; result.scrollIntoView({ block: "nearest" });
-    sendEnquiry(`New website enquiry: ${value("service")} (${value("name")})`, text, data).then((ok) => {
+    sendEnquiry(`New website enquiry: ${value("service")} (${value("name")})`, text, data, "enquiry-form").then((ok) => {
       submit.disabled = false;
       sendStatus.textContent = ok
         ? "Thank you. Your enquiry has been emailed to our team, and WhatsApp has opened with your details. Please tap Send there too."
